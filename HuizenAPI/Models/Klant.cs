@@ -8,13 +8,89 @@ namespace Web4Api.Models
 {
     public class Klant
     {
-        public int KlantenNummer { get; set; }
-        public string Voornaam { get; set; }
-        public string Achternaam { get; set; }
-        public DateTime GeboorteDatum { get; set; }
-        public string Email { get; set; }
-        public string TelefoonNummer { get; set; }
+        #region Fields
+        private int _klantenNummer;
+        private string _voornaam;
+        private string _achternaam;
+        private DateTime _geboorteDatum;
+        private string _email; 
+        private string _telefoonNummer;
+        #endregion
+
+        public int KlantenNummer {
+            get
+            {
+                return _klantenNummer;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Klantennummer mag niet kleiner of gelijk zijn aan nul");
+                _klantenNummer = value;
+            }
+        }
+        public string Voornaam {
+            get
+            {
+                return _voornaam;
+            }
+            set
+            {
+                if (value == null || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Voornaam mag niet leeg zijn");
+                _voornaam = value;
+            }
+        }
+        public string Achternaam {
+            get
+            {
+                return _achternaam;
+            }
+            set
+            {
+                if (value == null || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Achternaam mag niet leeg zijn");
+                _achternaam = value;
+            }
+        }
+        public DateTime GeboorteDatum {
+            get
+            {
+                return _geboorteDatum;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Geboortedatum mag niet leeg zijn");
+                _geboorteDatum = value;
+            }
+        }
+        public string Email {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                if (value == null || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("emailadres mag geen leeg gegeven zijn");
+                _email = value;
+            }
+        }
+        public string TelefoonNummer {
+            get
+            {
+                return _telefoonNummer;
+            }
+            set
+            {
+                if (value == null || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Telefoonnummer mag geen leeg gegeven zijn");
+                _telefoonNummer = value;
+            }
+        }
         public List<Huis> FavorieteHuizen;
+
 
         public Klant()
         {

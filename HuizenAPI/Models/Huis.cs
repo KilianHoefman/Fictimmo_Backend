@@ -6,31 +6,119 @@ using System.Threading.Tasks;
 
 namespace Web4Api.Models
 {
-    public class Huis : ITypeHuis
+    public class Huis
     {
-        public int Id { get; set; }
-        public Locatie Locatie { get; set; }
-        public string KorteBeschrijving { get; set; }
-        public double Price { get; set; }
-        public Detail Details { get; set; }
+        private int _id;
+        private Locatie _locatie;
+        private string _korteBeschrijving;
+        private double _price;
+        private Detail _details;
+        private string _type;
+        private ImmoBureau _immoBureau;
 
-        public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail details)
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("Id mag niet kleiner zijn dan 0");
+                _id = value;
+            }
+        }
+        public Locatie Locatie {
+            get
+            {
+                return _locatie;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Locatie mag niet leeg zijn");
+                _locatie = value;
+            }
+        }
+        public string KorteBeschrijving {
+            get
+            {
+                return _korteBeschrijving;
+            }
+            set
+            {
+                if (value == null || string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Korte beschrijving mag geen leeg gegeven zijn");
+                _korteBeschrijving = value;
+            }
+        }
+        public double Price {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Prijs mag niet kleiner of gelijk zijn aan nul");
+                _price = value;
+            }
+        }
+        public Detail Details {
+            get
+            {
+                return _details;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Details mag geen leeg gegeven zijn");
+                _details = value;
+            }
+        }
+
+
+        public string Type
+        {
+            get 
+            { 
+                return _type; 
+            }
+            set 
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Type mag niet leeg zijn");
+                if (string.Equals(value, "koop", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "huur", StringComparison.OrdinalIgnoreCase))
+                    _type = value;
+                else
+                    throw new ArgumentException("Fout in setter type...");
+                //CHANGE
+            }
+        }
+
+        public ImmoBureau ImmoBureau {
+            get
+            {
+                return _immoBureau;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Immobureau mag geen leeg gegeven zijn");
+                _immoBureau = value;
+            }
+        }
+
+        public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail details, string type, ImmoBureau immoBureau)
         {
             Id = id;
             Locatie = locatie;
             KorteBeschrijving = korteBeschrijving;
             Price = price;
             Details = details;
-        }
-
-        public string GetTypeHuis()
-        {
-            throw new NotImplementedException();
-        }
-
-        public double GetPrice()
-        {
-            throw new NotImplementedException();
+            Type = type;
+            ImmoBureau = immoBureau;
         }
     }
 }

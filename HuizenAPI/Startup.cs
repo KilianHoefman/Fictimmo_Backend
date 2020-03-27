@@ -26,6 +26,7 @@ namespace HuizenAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,7 @@ namespace HuizenAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseSwaggerUi3();
 
             app.UseRouting();
 
