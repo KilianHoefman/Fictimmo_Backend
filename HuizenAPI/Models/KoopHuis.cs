@@ -5,21 +5,16 @@ using System.Threading.Tasks;
 
 namespace HuizenAPI.Models
 {
-    public class KoopHuis : TypeHuis
+    public class KoopHuis : ITypeHuis
     {
-        public override double GetPrice()
+        public double GetPrice()
         {
-            throw new NotImplementedException();
+            return 450000;
         }
 
-        public override string GetStatus()
+        public string GetTypeHuis()
         {
-            throw new NotImplementedException();
-        }
-
-        public override string GetTypeHuis()
-        {
-            throw new NotImplementedException();
+            return "Koop";
         }
     }
 }

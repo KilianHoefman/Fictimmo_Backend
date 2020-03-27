@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace HuizenAPI.Models
 {
-    public abstract class TypeHuis
+    public interface ITypeHuis
     {
-        public abstract string GetTypeHuis();
-        public abstract double GetPrice();
-        public abstract string GetStatus();
-        
+        string GetTypeHuis();
+        double GetPrice();
     }
 }
