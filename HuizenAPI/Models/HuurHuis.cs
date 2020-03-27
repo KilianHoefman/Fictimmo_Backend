@@ -5,14 +5,19 @@ using System.Threading.Tasks;
 
 namespace HuizenAPI.Models
 {
-    public class HuurHuis : ITypeInterface
+    public class HuurHuis : TypeHuis
     {
-        double ITypeInterface.prijsHuis()
+        public override double GetPrice()
         {
             throw new NotImplementedException();
         }
 
-        string ITypeInterface.TypeHuis()
+        public override string GetStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetTypeHuis()
         {
             throw new NotImplementedException();
         }
