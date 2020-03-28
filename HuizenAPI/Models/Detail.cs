@@ -8,6 +8,7 @@ namespace Web4Api.Models
         private string _langeBeschrijving;
         private int _bewoonbareOppervlakte;
         private int _totaleOppervlakte;
+        private int _epcWaarde;
         private int _kadastraalInkomen;
 
         #region Properties
@@ -74,7 +75,6 @@ namespace Web4Api.Models
                 _kadastraalInkomen = value;
             }
         }
-       // public Huis Huis { get; set; }
         #endregion
 
         public Detail()

@@ -11,7 +11,7 @@ namespace Web4Api.Models
         private int _id;
         private Locatie _locatie;
         private string _korteBeschrijving;
-        private double _price;
+        private int _price;
         private Detail _detail;
         private string _type;
         private ImmoBureau _immoBureau;
@@ -53,7 +53,7 @@ namespace Web4Api.Models
                 _korteBeschrijving = value;
             }
         }
-        public double Price {
+        public int Price {
             get
             {
                 return _price;
@@ -112,7 +112,7 @@ namespace Web4Api.Models
 
         #region constructors
         public Huis() { }
-        public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail detail, string type, ImmoBureau immoBureau)
+        public Huis(int id, Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, ImmoBureau immoBureau)
         {
             Id = id;
             Locatie = locatie;

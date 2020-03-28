@@ -62,8 +62,8 @@ namespace Web4Api.Models
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentException("Geboortedatum mag niet leeg zijn");
+                if (value == null || value.Year > 2002)
+                    throw new ArgumentException("Geboortedatum mag later zijn dan 2002 en moet ingevuld zijn");
                 _geboorteDatum = value;
             }
         }
