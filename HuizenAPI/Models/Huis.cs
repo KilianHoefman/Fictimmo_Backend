@@ -110,6 +110,7 @@ namespace Web4Api.Models
             }
         }
 
+        #region constructors
         public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail details, string type, ImmoBureau immoBureau)
         {
             Id = id;
@@ -120,5 +121,6 @@ namespace Web4Api.Models
             Type = type;
             ImmoBureau = immoBureau;
         }
+        #endregion
     }
 }

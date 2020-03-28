@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HuizenAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -15,6 +16,7 @@ namespace Web4Api.Models
         private DateTime _geboorteDatum;
         private string _email; 
         private string _telefoonNummer;
+        private ImmoBureau _immoBureau;
         #endregion
 
         public int KlantenNummer {
@@ -89,6 +91,19 @@ namespace Web4Api.Models
                 _telefoonNummer = value;
             }
         }
+        public ImmoBureau ImmoBureau
+        {
+            get
+            {
+                return _immoBureau;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentException("Immobureau mag geen leeg gegeven zijn");
+                _immoBureau = value;
+            }
+        }
         public List<Huis> FavorieteHuizen;
 
 
@@ -97,7 +112,7 @@ namespace Web4Api.Models
             FavorieteHuizen = new List<Huis>();
         }
 
-        public Klant(int klantenNummer, string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer) : this()
+        public Klant(int klantenNummer, string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer, ImmoBureau immoBureau) : this()
         {
             KlantenNummer = klantenNummer;
             Voornaam = voornaam;
@@ -105,6 +120,7 @@ namespace Web4Api.Models
             GeboorteDatum = geboorteDatum;
             Email = email;
             TelefoonNummer = telefoonNummer;
+            ImmoBureau = immoBureau;
         }
     }
 }

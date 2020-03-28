@@ -7,8 +7,23 @@ using Web4Api.Models;
 namespace HuizenAPI.Models
 {        
     public class ImmoBureau
-    {       
-        private string _naam;
+    {
+        private int _id;
+        private string _naam;     
+        
+        public int ID
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("ID mag niet kleiner dan nul zijn");
+                _id = value;
+            }
+        }
         public string Naam {
             get
             {
@@ -27,9 +42,22 @@ namespace HuizenAPI.Models
             Huizen = new List<Huis>();
         }
 
-        public ImmoBureau(string naam) : this()
+        public ImmoBureau(int id, string naam) : this()
         {
+            ID = id;
             Naam = naam;
         }
+
+        #region methods
+        public void AddHuis(Huis huis)
+        {
+            Huizen.Add(huis);
+        }
+
+        public Huis GetHuis(int id)
+        {
+            return Huizen.SingleOrDefault(huis => huis.Id == id);
+        }
+        #endregion
     }
 }

@@ -4,6 +4,7 @@ namespace Web4Api.Models
 {
     public class Detail
     {
+        private int _detailId;
         private string _langeBeschrijving;
         private int _bewoonbareOppervlakte;
         private int _totaleOppervlakte;
@@ -11,6 +12,19 @@ namespace Web4Api.Models
         private int _kadastraalInkomen;
 
         #region Properties
+        public int DetailID
+        {
+            get
+            {
+                return _detailId;
+            }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("DetailID mag ");
+                _detailId = value;
+            }
+        }
         public string LangeBeschrijving
         {
             get
@@ -74,8 +88,9 @@ namespace Web4Api.Models
         }
         #endregion
 
-        public Detail(string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen)
+        public Detail(int detailId, string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen)
         {
+            DetailID = detailId;
             LangeBeschrijving = langeBeschrijving;
             BewoonbareOppervlakte = bewoonbareOppervlakte;
             TotaleOppervlakte = totaleOppervlakte;
