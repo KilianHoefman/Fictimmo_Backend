@@ -4,11 +4,10 @@ namespace Web4Api.Models
 {
     public class Detail
     {
-        private int _detailId;
+        private int Id;
         private string _langeBeschrijving;
         private int _bewoonbareOppervlakte;
         private int _totaleOppervlakte;
-        private int _epcWaarde;
         private int _kadastraalInkomen;
 
         #region Properties
@@ -16,13 +15,13 @@ namespace Web4Api.Models
         {
             get
             {
-                return _detailId;
+                return Id;
             }
             set
             {
                 if (value < 0)
                     throw new ArgumentException("DetailID mag ");
-                _detailId = value;
+                Id = value;
             }
         }
         public string LangeBeschrijving
@@ -62,18 +61,7 @@ namespace Web4Api.Models
                         "gelijk zijn aan nul en moet minstens evenveel bedragen als de bewoonbare oppervlakte");
             }
         }
-        public int EPCWaarde {
-            get
-            {
-                return _epcWaarde;
-            }
-            set
-            {
-                if (value <= 0)
-                    throw new ArgumentException("EPC moet minstens 1 bedragen");
-                _epcWaarde = value;
-            }
-        }
+        public int EPCWaarde { get; set; }
         public int KadastraalInkomen {
             get
             {
@@ -86,11 +74,16 @@ namespace Web4Api.Models
                 _kadastraalInkomen = value;
             }
         }
+       // public Huis Huis { get; set; }
         #endregion
 
-        public Detail(int detailId, string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen)
+        public Detail()
         {
-            DetailID = detailId;
+
+        }
+
+        public Detail(string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen)
+        {            
             LangeBeschrijving = langeBeschrijving;
             BewoonbareOppervlakte = bewoonbareOppervlakte;
             TotaleOppervlakte = totaleOppervlakte;

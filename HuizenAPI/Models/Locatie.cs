@@ -9,7 +9,7 @@ namespace Web4Api.Models
         private string _gemeente;
         private string _straatnaam;
         private string _huisnummer;
-        private int _postcode;
+        private int _postcode;        
         #endregion
 
         #region Properties
@@ -74,9 +74,11 @@ namespace Web4Api.Models
                 _postcode = value;
             }
         }
+       // public Huis Huis { get; set; }
         #endregion
 
         #region constructors
+        public Locatie() { }
         public Locatie(int locatieId, string gemeente, string straatnaam, string huisnummer, int postcode)
         {
             LocatieID = locatieId;

@@ -106,7 +106,7 @@ namespace Web4Api.Models
         }
         public List<Huis> FavorieteHuizen;
 
-
+        #region constructor
         public Klant()
         {
             FavorieteHuizen = new List<Huis>();
@@ -122,5 +122,6 @@ namespace Web4Api.Models
             TelefoonNummer = telefoonNummer;
             ImmoBureau = immoBureau;
         }
+        #endregion
     }
 }

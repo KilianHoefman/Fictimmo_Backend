@@ -12,7 +12,7 @@ namespace Web4Api.Models
         private Locatie _locatie;
         private string _korteBeschrijving;
         private double _price;
-        private Detail _details;
+        private Detail _detail;
         private string _type;
         private ImmoBureau _immoBureau;
 
@@ -65,16 +65,16 @@ namespace Web4Api.Models
                 _price = value;
             }
         }
-        public Detail Details {
+        public Detail Detail {
             get
             {
-                return _details;
+                return _detail;
             }
             set
             {
                 if (value == null)
                     throw new ArgumentException("Details mag geen leeg gegeven zijn");
-                _details = value;
+                _detail = value;
             }
         }
 
@@ -111,13 +111,14 @@ namespace Web4Api.Models
         }
 
         #region constructors
-        public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail details, string type, ImmoBureau immoBureau)
+        public Huis() { }
+        public Huis(int id, Locatie locatie, string korteBeschrijving, double price, Detail detail, string type, ImmoBureau immoBureau)
         {
             Id = id;
             Locatie = locatie;
             KorteBeschrijving = korteBeschrijving;
             Price = price;
-            Details = details;
+            Detail = detail;
             Type = type;
             ImmoBureau = immoBureau;
         }

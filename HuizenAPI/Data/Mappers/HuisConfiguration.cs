@@ -17,23 +17,13 @@ namespace HuizenAPI.Data.Mappers
 
             builder.Property(h => h.KorteBeschrijving).IsRequired().HasMaxLength(450);
             builder.Property(h => h.Price).IsRequired();
-            builder.Property(h => h.Details).IsRequired();
-            builder.Property(h => h.Type).IsRequired();
+            builder.Property(h => h.Type).IsRequired().HasMaxLength(20);
 
-            builder.HasOne(h => h.Locatie)
-                .WithOne()
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(h => h.Details)
-                .WithOne()
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(h => h.ImmoBureau)
-                .WithMany()
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasOne(h => h.ImmoBureau)
+                .WithMany();
+                
         }
     }
 }

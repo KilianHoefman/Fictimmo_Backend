@@ -1,2 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HuizenAPI.Models.ImmoBureau">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAMgAAAAABABAAAAAABAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\ImmoBureau.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Web4Api.Models.Detail">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAQAAAAABAAAAAAQAAgACBCAwAAAAIABA=</HashCode>
+      <FileName>Models\Detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Web4Api.Models.Huis">
+    <Position X="7.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAABAASABAYQAAABAAAAAAgAAAAKAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Huis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ImmoBureau" />
+      <Property Name="Locatie" />
+      <Property Name="Details" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Web4Api.Models.Klant">
+    <Position X="12" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAgICAIAIAAEAAAAAAAEAAAAAIgAIgAAAEAAAM=</HashCode>
+      <FileName>Models\Klant.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ImmoBureau" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Web4Api.Models.Locatie">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQgAAAAAAAABAIAAAAAAgAABAAAAAAAAAgAAAQIACAA=</HashCode>
+      <FileName>Models\Locatie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -9,7 +9,7 @@ namespace HuizenAPI.Models
     public class ImmoBureau
     {
         private int _id;
-        private string _naam;     
+        private readonly string _naam;     
         
         public int ID
         {
@@ -35,8 +35,9 @@ namespace HuizenAPI.Models
                     throw new ArgumentException("Immobureau moet een naam hebben en deze mag niet leeg zijn");
             }
         }
-        public ICollection<Huis> Huizen;
+        public ICollection<Huis> Huizen { get; set; }
 
+        #region constructors
         public ImmoBureau()
         {
             Huizen = new List<Huis>();
@@ -47,6 +48,7 @@ namespace HuizenAPI.Models
             ID = id;
             Naam = naam;
         }
+        #endregion
 
         #region methods
         public void AddHuis(Huis huis)

@@ -18,7 +18,7 @@ namespace HuizenAPI.Data.Mappers
 
             //mapping naar huis            
             builder.HasMany(i => i.Huizen)
-                .WithOne()
+                .WithOne(i => i.ImmoBureau)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }
