@@ -21,14 +21,25 @@ namespace HuizenAPI.Controllers
             _immoBureausRepository = context;
         }
 
+        /// <summary>
+        /// Geef immobureaus
+        /// </summary>
+        /// <param name="naam">Naam van immobureau</param>
+        /// <returns>Array van immobureaus</returns>
         [HttpGet]
         public IEnumerable<ImmoBureau> GetImmoBureaus(string naam)
         {
             if (string.IsNullOrEmpty(naam))
-                return _immoBureausRepository.GetAll();
+                return _immoBureausRepository.GetAll().OrderBy(i => i.Naam);
             return _immoBureausRepository.GetBy(naam);
         }
 
+
+        /// <summary>
+        /// Geef immobureau met id
+        /// </summary>
+        /// <param name="id">Id van het immobureau</param>
+        /// <returns>ImmoBureau</returns>
         [HttpGet("{id}")]
         public ActionResult<ImmoBureau> GetImmoBureau(int id)
         {
@@ -37,6 +48,11 @@ namespace HuizenAPI.Controllers
             return immoBureau;
         }
 
+        /// <summary>
+        /// Voegt een nieuw ImmoBureau toe
+        /// </summary>
+        /// <param name="immoBureauDTO">Nieuw ImmoBureau</param>
+        /// <returns>ImmoBureau dat gemaakt werkt</returns>
         [HttpPost]
         public ActionResult<ImmoBureau> PostImmoBureau(ImmoBureauDTO immoBureauDTO)
         {
@@ -47,6 +63,11 @@ namespace HuizenAPI.Controllers
             return CreatedAtAction(nameof(GetImmoBureau), new { id = immoBureauToCreate.ImmoBureauId }, immoBureauToCreate);
         }
 
+        /// <summary>
+        /// Wijzigt een ImmoBureau
+        /// </summary>
+        /// <param name="id">Id van het te wijzigen ImmoBureau</param>
+        /// <param name="immoBureau">Gewijzigd ImmoBureau</param>       
         [HttpPut("{id}")]
         public IActionResult PutImmoBureau(int id, ImmoBureau immoBureau)
         {
@@ -59,6 +80,10 @@ namespace HuizenAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Verwijdert het ImmoBureau met id
+        /// </summary>
+        /// <param name="id">Id van het te verwijderen ImmoBureau</param>        
         [HttpDelete("{id}")]
         public IActionResult DeleteImmoBureau(int id)
         {

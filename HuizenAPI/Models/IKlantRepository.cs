@@ -6,7 +6,7 @@ using Web4Api.Models;
 
 namespace HuizenAPI.Models
 {
-    interface IKlantRepository
+    public interface IKlantRepository
     {
         Klant GetById(int id);
         Klant GetByImmoBureau(ImmoBureau immoBureau);
