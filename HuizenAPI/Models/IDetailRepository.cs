@@ -11,9 +11,9 @@ namespace HuizenAPI.Models
         Detail GetById(int id);
         IEnumerable<Detail> GetAll();
         IEnumerable<Detail> GetBy(int? bewoonbareOppervlakte = null, int? totaleOppervlakte = null, int? epcWaarde = null, int? kadastraalInkomen = null);
-        void Add(Detail details);
-        void Delete(Detail details);
-        void Update(Detail details);
+        void Add(Detail detail);
+        void Delete(Detail detail);
+        void Update(Detail detail);
         void SaveChanges();
     }
 }

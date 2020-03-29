@@ -9,8 +9,9 @@ namespace HuizenAPI.Models
     interface IKlantRepository
     {
         Klant GetById(int id);
+        Klant GetByImmoBureau(ImmoBureau immoBureau);
         IEnumerable<Klant> GetAll();
-        IEnumerable<Klant> GetBy(string voornaam = null, string achternaam = null, DateTime? geboorteDatum = null, string email = null, string telefoonNummer = null, ImmoBureau immoBureau = null);
+        IEnumerable<Klant> GetBy(string voornaam = null, string achternaam = null, string email = null, string telefoonNummer = null);
         void Add(Klant klant);
         void Delete(Klant klant);
         void Update(Klant klant);
