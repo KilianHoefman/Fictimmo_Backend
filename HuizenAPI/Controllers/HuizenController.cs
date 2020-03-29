@@ -63,9 +63,17 @@ namespace HuizenAPI.Controllers
         }
 
 
-        /*[HttpPost]
-        public ActionResult<Huis> PostHuis(HuisDTO huis)
+        [HttpPost]
+        public ActionResult<Huis> PostHuis(HuisDTO huisDTO)
         {
-        }*/
+            Locatie locatie = new Locatie(huisDTO.LocatieDTO.Gemeente, huisDTO.LocatieDTO.Straatnaam, huisDTO.LocatieDTO.Huisnummer, huisDTO.LocatieDTO.Postcode);
+            Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
+            ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureauDTO.Naam);
+            Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, immoBureau);
+            _huisRepository.Add(huis);
+            _huisRepository.SaveChanges();
+
+            return CreatedAtAction(nameof(GetHuis), new { id = huis.Id }, huis);
+        }
     }
 }

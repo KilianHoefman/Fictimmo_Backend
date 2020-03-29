@@ -7,6 +7,10 @@ namespace HuizenAPI.DTOs
 {
     public class DetailDTO
     {
-        //string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen
+        public string LangeBeschrijving { get; set; }
+        public int BewoonbareOppervlakte { get; set; }
+        public int TotaleOppervlakte { get; set; }
+        public int EPCWaarde { get; set; }
+        public int KadastraalInkomen { get; set; }
     }
 }

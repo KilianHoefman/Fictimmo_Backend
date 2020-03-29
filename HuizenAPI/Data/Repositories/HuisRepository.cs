@@ -32,7 +32,7 @@ namespace HuizenAPI.Data.Repositories
 
         public IEnumerable<Huis> GetAll()
         {
-            return _huizen.ToList();
+            return _huizen.Include(h => h.Locatie).Include(h => h.Detail).Include(h => h.ImmoBureau).ToList();
         }
 
         public IEnumerable<Huis> GetBy(int? price = null, string type = null)
@@ -61,7 +61,7 @@ namespace HuizenAPI.Data.Repositories
                 return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Postcode == Postcode);
             if (!string.IsNullOrEmpty(Gemeente))
                 return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Gemeente.Equals(Gemeente));
-            return huizen.Include(h => h.Locatie).OrderBy(h => h.Locatie.Postcode).ToList();
+            return GetAll();
         }
 
         public void Update(Huis huis)
