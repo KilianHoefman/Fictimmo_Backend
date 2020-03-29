@@ -53,5 +53,11 @@ namespace HuizenAPI.Data.Repositories
         {
             _context.SaveChanges();
         }
+
+        public bool TryGetImmoBureau(int id, out ImmoBureau immoBureau)
+        {
+            immoBureau = _context.ImmoBureau.Include(i => i.Huizen).FirstOrDefault(i => i.ImmoBureauId == id);
+            return immoBureau != null;
+        }
     }
 }
