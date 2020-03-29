@@ -6,7 +6,7 @@ using Web4Api.Models;
 
 namespace HuizenAPI.Models
 {
-    interface ILocatieRepository
+    public interface ILocatieRepository
     {
         Locatie GetById(int id);
         IEnumerable<Locatie> GetAll();
