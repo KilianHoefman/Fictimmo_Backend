@@ -57,9 +57,10 @@ namespace Web4Api.Models
             }
             set
             {
-                if (value <= 0 || value < _bewoonbareOppervlakte)
-                    throw new ArgumentException("Bewoonbare oppervlakte mag niet kleiner of " +
-                        "gelijk zijn aan nul en moet minstens evenveel bedragen als de bewoonbare oppervlakte");
+                if (value <= 0)
+                    throw new ArgumentException("Totale oppervlakte mag niet kleiner of " +
+                        "gelijk zijn aan nul");
+                _totaleOppervlakte = value;
             }
         }
         public int EPCWaarde { get; set; }

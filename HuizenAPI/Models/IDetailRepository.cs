@@ -6,7 +6,7 @@ using Web4Api.Models;
 
 namespace HuizenAPI.Models
 {
-    interface IDetailRepository
+    public interface IDetailRepository
     {
         Detail GetById(int id);
         IEnumerable<Detail> GetAll();
