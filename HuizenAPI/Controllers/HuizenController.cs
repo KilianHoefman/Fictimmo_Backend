@@ -23,10 +23,10 @@ namespace HuizenAPI.Controllers
         }
 
         /// <summary>
-        /// Geef alle huizen
+        /// Geef alle huizen op prijs en/of type
         /// </summary>
-        /// <param name="price"></param>
-        /// <param name="type"></param>
+        /// <param name="price">Prijs van het huis als int</param>
+        /// <param name="type">Type van het huis (koop of huur) als string</param>
         /// <returns>Array van huizen</returns>
         [HttpGet]
         public IEnumerable<Huis> GetHuizen(int? price = null, string type = null)
@@ -39,7 +39,7 @@ namespace HuizenAPI.Controllers
         /// <summary>
         /// Geef het huis met id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id van het huis als int</param>
         /// <returns>Het huis</returns>
         [HttpGet("{id}")]
         public ActionResult<Huis> GetHuis(int id)
@@ -50,19 +50,33 @@ namespace HuizenAPI.Controllers
             return huis;
         }
 
+        /// <summary>
+        /// Geef huizen met bepaald immobureau
+        /// </summary>
+        /// <param name="Naam">Naam als string</param>
+        /// <returns>Array van huizen met gespecifieerd immobureau</returns>
         [HttpGet("immoBureau")]
         public IEnumerable<Huis> GetByImmoBureau(string Naam)
         {
             return _huisRepository.GetByImmoBureau(Naam);
         }
 
+        /// <summary>
+        /// Geef huizen met bepaalde locatie adhv postcode of gemeente
+        /// </summary>
+        /// <param name="Postcode">Postcode als int</param>
+        /// <param name="Gemeente">Gemeente als string</param>
+        /// <returns>Array van huizen die voldoen aan postcode of gemeente</returns>
         [HttpGet("Locatie")]
         public IEnumerable<Huis> GetByLocatie(int? Postcode, string Gemeente)
         {
             return _huisRepository.GetByLocatie(Postcode, Gemeente);
         }
 
-
+        /// <summary>
+        /// Voegt een nieuw huis toe
+        /// </summary>
+        /// <param name="huisDTO">DTO van huis met info</param>        
         [HttpPost]
         public ActionResult<Huis> PostHuis(HuisDTO huisDTO)
         {
@@ -75,5 +89,36 @@ namespace HuizenAPI.Controllers
 
             return CreatedAtAction(nameof(GetHuis), new { id = huis.Id }, huis);
         }
+
+        /// <summary>
+        /// Wijzigt een huis
+        /// </summary>
+        /// <param name="id">id van het huis dat gewijzigd dient te worden als int</param>
+        /// <param name="huis">Het te wijzigen huis</param>        
+        [HttpPut("{id}")]
+        public IActionResult PutHuis(int id, Huis huis)
+        {
+            if(id != huis.Id)
+            {
+                return BadRequest();
+            }
+            _huisRepository.Update(huis);
+            _huisRepository.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteHuis(int id)
+        {
+            Huis huis = _huisRepository.GetById(id);
+            if(huis == null)
+            {
+                return NotFound();
+            }
+            _huisRepository.Delete(huis);
+            _huisRepository.SaveChanges();
+            return NoContent();
+        }
+
     }
 }
