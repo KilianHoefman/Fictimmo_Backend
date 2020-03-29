@@ -13,7 +13,7 @@ namespace HuizenAPI.Data.Mappers
         public void Configure(EntityTypeBuilder<ImmoBureau> builder)
         {
             builder.ToTable("ImmoBureau");
-            builder.HasKey(i => i.ID);
+            builder.HasKey(i => i.ImmoBureauId);
             builder.Property(i => i.Naam).IsRequired().HasMaxLength(100);
 
             //mapping naar huis            

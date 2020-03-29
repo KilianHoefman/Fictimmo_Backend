@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Web4Api.Models;
 
 namespace HuizenAPI.Models
-{        
+{
     public class ImmoBureau
     {
         private int _id;
-        private readonly string _naam;     
-        
-        public int ID
+        private string _naam;
+
+        public int ImmoBureauId
         {
             get
             {
@@ -24,7 +23,8 @@ namespace HuizenAPI.Models
                 _id = value;
             }
         }
-        public string Naam {
+        public string Naam
+        {
             get
             {
                 return _naam;
@@ -33,6 +33,7 @@ namespace HuizenAPI.Models
             {
                 if (value == null || string.IsNullOrEmpty(value))
                     throw new ArgumentException("Immobureau moet een naam hebben en deze mag niet leeg zijn");
+                _naam = value;
             }
         }
         public ICollection<Huis> Huizen { get; set; }
@@ -43,9 +44,8 @@ namespace HuizenAPI.Models
             Huizen = new List<Huis>();
         }
 
-        public ImmoBureau(int id, string naam) : this()
+        public ImmoBureau(string naam) : this()
         {
-            ID = id;
             Naam = naam;
         }
         #endregion

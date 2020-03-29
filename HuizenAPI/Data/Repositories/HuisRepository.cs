@@ -35,23 +35,33 @@ namespace HuizenAPI.Data.Repositories
             return _huizen.ToList();
         }
 
-        public IEnumerable<Huis> GetBy(Locatie locatie = null, int? price = null, string type = null, ImmoBureau immoBureau = null)
+        public IEnumerable<Huis> GetBy(int? price = null, string type = null)
         {
-            var huizen = _huizen.AsQueryable();
-            if (locatie != null)
-                huizen = huizen.Where(h => h.Locatie == locatie);
+            var huizen = _huizen.AsQueryable();                        
             if (price != null)
                 huizen = huizen.Where(h => h.Price == price);
             if (!string.IsNullOrEmpty(type))
                 huizen = huizen.Where(h => h.Type.IndexOf(type) >= 0);
-            if (immoBureau != null)
-                huizen = huizen.Where(h => h.ImmoBureau == immoBureau);
             return huizen.OrderBy(h => h.Price).ToList();
         }
 
         public Huis GetById(int id)
         {
-            return _huizen.SingleOrDefault(h => h.Id == id);
+            return _huizen.Include(h => h.ImmoBureau).Include(h => h.Locatie).SingleOrDefault(h => h.Id == id);
+        }
+        public IEnumerable<Huis> GetByImmoBureau(string Naam)
+        {
+            return _huizen.Include(h => h.ImmoBureau).Where(i => i.ImmoBureau.Naam.Equals(Naam));
+        }
+
+        public IEnumerable<Huis> GetByLocatie(int? Postcode, string Gemeente = null)
+        {
+            var huizen = _huizen.AsQueryable();
+            if(Postcode != null)
+                return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Postcode == Postcode);
+            if (!string.IsNullOrEmpty(Gemeente))
+                return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Gemeente.Equals(Gemeente));
+            return huizen.Include(h => h.Locatie).OrderBy(h => h.Locatie.Postcode).ToList();
         }
 
         public void Update(Huis huis)

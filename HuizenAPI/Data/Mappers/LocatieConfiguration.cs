@@ -13,7 +13,7 @@ namespace HuizenAPI.Data.Mappers
         public void Configure(EntityTypeBuilder<Locatie> builder)
         {
             builder.ToTable("Locatie");
-            builder.HasKey(l => l.LocatieID);            
+            builder.HasKey(l => l.LocatieId);            
             builder.Property(l => l.Gemeente).IsRequired().HasMaxLength(50);
             builder.Property(l => l.Straatnaam).IsRequired().HasMaxLength(50);
             builder.Property(l => l.Huisnummer).IsRequired().HasMaxLength(10);

@@ -79,7 +79,6 @@ namespace Web4Api.Models
 
         public Detail()
         {
-
         }
 
         public Detail(string langeBeschrijving, int bewoonbareOppervlakte, int totaleOppervlakte, int epcWaarde, int kadastraalInkomen)

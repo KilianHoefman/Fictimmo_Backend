@@ -41,7 +41,7 @@ namespace HuizenAPI.Data.Repositories
 
         public ImmoBureau GetById(int id)
         {
-            return _immoBureaus.SingleOrDefault(i => i.ID == id);
+            return _immoBureaus.SingleOrDefault(i => i.ImmoBureauId == id);
         }
 
         public void Update(ImmoBureau immoBureau)

@@ -1,8 +1,5 @@
 ﻿using HuizenAPI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Web4Api.Models
 {
@@ -18,18 +15,10 @@ namespace Web4Api.Models
 
         public int Id
         {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentException("Id mag niet kleiner zijn dan 0");
-                _id = value;
-            }
+            get; set;
         }
-        public Locatie Locatie {
+        public Locatie Locatie
+        {
             get
             {
                 return _locatie;
@@ -41,7 +30,8 @@ namespace Web4Api.Models
                 _locatie = value;
             }
         }
-        public string KorteBeschrijving {
+        public string KorteBeschrijving
+        {
             get
             {
                 return _korteBeschrijving;
@@ -53,7 +43,8 @@ namespace Web4Api.Models
                 _korteBeschrijving = value;
             }
         }
-        public int Price {
+        public int Price
+        {
             get
             {
                 return _price;
@@ -65,7 +56,8 @@ namespace Web4Api.Models
                 _price = value;
             }
         }
-        public Detail Detail {
+        public Detail Detail
+        {
             get
             {
                 return _detail;
@@ -81,11 +73,11 @@ namespace Web4Api.Models
 
         public string Type
         {
-            get 
-            { 
-                return _type; 
+            get
+            {
+                return _type;
             }
-            set 
+            set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("Type mag niet leeg zijn");
@@ -97,7 +89,8 @@ namespace Web4Api.Models
             }
         }
 
-        public ImmoBureau ImmoBureau {
+        public ImmoBureau ImmoBureau
+        {
             get
             {
                 return _immoBureau;
@@ -112,9 +105,8 @@ namespace Web4Api.Models
 
         #region constructors
         public Huis() { }
-        public Huis(int id, Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, ImmoBureau immoBureau)
+        public Huis(Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, ImmoBureau immoBureau)
         {
-            Id = id;
             Locatie = locatie;
             KorteBeschrijving = korteBeschrijving;
             Price = price;

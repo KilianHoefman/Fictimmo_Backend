@@ -13,7 +13,7 @@ namespace Web4Api.Models
         #endregion
 
         #region Properties
-        public int LocatieID
+        public int LocatieId
         {
             get
             {
@@ -74,14 +74,12 @@ namespace Web4Api.Models
                 _postcode = value;
             }
         }
-       // public Huis Huis { get; set; }
         #endregion
 
         #region constructors
         public Locatie() { }
-        public Locatie(int locatieId, string gemeente, string straatnaam, string huisnummer, int postcode)
+        public Locatie(string gemeente, string straatnaam, string huisnummer, int postcode)
         {
-            LocatieID = locatieId;
             Gemeente = gemeente;
             Straatnaam = straatnaam;
             Huisnummer = huisnummer;

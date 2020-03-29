@@ -51,7 +51,7 @@ namespace HuizenAPI.Data.Repositories
 
         public Locatie GetById(int id)
         {
-            return _locaties.SingleOrDefault(i => i.LocatieID == id);
+            return _locaties.SingleOrDefault(i => i.LocatieId == id);
         }
 
         public void SaveChanges()

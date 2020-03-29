@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Web4Api.Models;
 
-namespace Web4Api.Models
+namespace HuizenAPI.Models
 {
     public class Klant
     {
@@ -112,9 +113,8 @@ namespace Web4Api.Models
             FavorieteHuizen = new List<Huis>();
         }
 
-        public Klant(int klantenNummer, string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer, ImmoBureau immoBureau) : this()
+        public Klant(string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer, ImmoBureau immoBureau) : this()
         {
-            KlantenNummer = klantenNummer;
             Voornaam = voornaam;
             Achternaam = achternaam;
             GeboorteDatum = geboorteDatum;
