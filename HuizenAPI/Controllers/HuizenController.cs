@@ -50,6 +50,30 @@ namespace HuizenAPI.Controllers
             return huis;
         }
 
+        [HttpGet("GetDetailVoorHuis")]
+        public ActionResult<Detail> GetDetailVoorHuis(int id)
+        {
+            Huis huis = _huisRepository.GetById(id);
+            if (huis == null) return NotFound();
+            return huis.Detail;
+        }
+
+        [HttpGet("GetLocatieVoorHuis")]
+        public ActionResult<Locatie> GetLocatieVoorHuis(int id)
+        {
+            Huis huis = _huisRepository.GetById(id);
+            if (huis == null) return NotFound();
+            return huis.Locatie;
+        }
+
+        [HttpGet("GetImmoBureauVoorHuis")]
+        public ActionResult<ImmoBureau> GetImmoBureaVoorHuis(int id)
+        {
+            Huis huis = _huisRepository.GetById(id);
+            if (huis == null) return NotFound();
+            return huis.ImmoBureau;
+        }
+
         /// <summary>
         /// Geef huizen met bepaald immobureau
         /// </summary>
