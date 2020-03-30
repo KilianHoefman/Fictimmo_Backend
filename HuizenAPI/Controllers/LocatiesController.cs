@@ -30,6 +30,10 @@ namespace HuizenAPI.Controllers
         /// <param name="postcode">Postcode van Locatie als int</param>
         /// <returns>Array van Locaties die voldoen aan parameters</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<Locatie> GetLocaties(string gemeente = null, string straatnaam = null, string huisnummer = null, int? postcode = null)
         {
             if (string.IsNullOrEmpty(gemeente) && string.IsNullOrEmpty(straatnaam) && string.IsNullOrEmpty(huisnummer) && postcode == null)
@@ -43,6 +47,11 @@ namespace HuizenAPI.Controllers
         /// <param name="id">LocatieId</param>
         /// <returns>Locatie</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public ActionResult<Locatie> GetLocatie(int id)
         {
             Locatie locatie = _locatieRepository.GetById(id);
@@ -58,6 +67,10 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="locatieDTO">Nieuwe locatie</param>        
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public ActionResult<Locatie> PostLocatie(LocatieDTO locatieDTO)
         {
             Locatie locatieToCreate = new Locatie(locatieDTO.Gemeente, locatieDTO.Straatnaam, locatieDTO.Huisnummer, locatieDTO.Postcode);
@@ -74,6 +87,12 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van de te wijzigen locatie</param>
         /// <param name="locatie">Gewijzigde locatie</param>        
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public IActionResult PutLocatie(int id, Locatie locatie)
         {
             if (id != locatie.LocatieId)
@@ -89,6 +108,11 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="id">Id van de te verwijderen locatie</param>        
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteLocatie(int id)
         {
             Locatie locatie = _locatieRepository.GetById(id);

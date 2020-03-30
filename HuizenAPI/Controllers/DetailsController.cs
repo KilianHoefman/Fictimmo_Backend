@@ -30,6 +30,10 @@ namespace HuizenAPI.Controllers
         /// <param name="kadastraalInkomen">kadastraal inkomen als int</param>
         /// <returns>array van Details gebaseerd op parameters</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<Detail> GetDetails(int? bewoonbareOppervlakte = null, int? totaleOppervlakte = null, int? epcWaarde = null, int? kadastraalInkomen = null)
         {
             if (bewoonbareOppervlakte == null && totaleOppervlakte == null && epcWaarde == null && kadastraalInkomen == null)
@@ -43,6 +47,10 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het detail als int</param>
         /// <returns>Detail</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Detail> GetDetail(int id)
         {
             Detail detail = _detailRepository.GetById(id);
@@ -56,6 +64,9 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="detailDTO">Het nieuwe detail</param>       
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Detail> PostDetail(DetailDTO detailDTO)
         {
             Detail detailToCreate = new Detail(detailDTO.LangeBeschrijving, detailDTO.BewoonbareOppervlakte, detailDTO.TotaleOppervlakte, detailDTO.EPCWaarde, detailDTO.KadastraalInkomen);
@@ -71,6 +82,11 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het te wijzigen detail</param>
         /// <param name="detail">Het gewijzigd detail</param>        
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult PutDetail(int id, Detail detail)
         {
             if(id != detail.DetailID)
@@ -88,6 +104,11 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="id">Het id van het te verwijderen detail</param>       
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteDetail(int id)
         {
             Detail detail = _detailRepository.GetById(id);

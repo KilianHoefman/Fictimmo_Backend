@@ -28,6 +28,11 @@ namespace HuizenAPI.Controllers
         /// <param name="telefoonNummer">Telefoonnummer van de klant als string</param>
         /// <returns>Array van klanten</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public IEnumerable<Klant> GetKlanten(string voornaam = null, string achternaam = null, string email = null, string telefoonNummer = null)
         {
             if (string.IsNullOrEmpty(voornaam) && string.IsNullOrEmpty(achternaam) && string.IsNullOrEmpty(email) && string.IsNullOrEmpty(telefoonNummer))
@@ -41,6 +46,11 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Klantennummer van de gewenste klant</param>
         /// <returns>Klant</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public ActionResult<Klant> GetKlant(int id)
         {
             Klant klant = _klantenRepository.GetById(id);
@@ -55,6 +65,9 @@ namespace HuizenAPI.Controllers
         /// <param name="klantDTO">De nieuwe toe te voegen klant</param>
         /// <returns>Gecreëerde Klant</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Klant> PostKlant(KlantDTO klantDTO)
         {
             
@@ -71,6 +84,12 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Klantennummer van de te wijzigen klant</param>
         /// <param name="klant">Gewijzigde klant</param>        
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public IActionResult PutKlant(int id, Klant klant)
         {
             if(id != klant.KlantenNummer)
@@ -87,6 +106,11 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="id">Klantennummer van de te verwijderen klant</param>        
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteKlant(int id)
         {
             Klant klant = _klantenRepository.GetById(id);

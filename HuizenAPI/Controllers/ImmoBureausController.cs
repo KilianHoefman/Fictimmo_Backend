@@ -27,6 +27,11 @@ namespace HuizenAPI.Controllers
         /// <param name="naam">Naam van immobureau</param>
         /// <returns>Array van immobureaus</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public IEnumerable<ImmoBureau> GetImmoBureaus(string naam)
         {
             if (string.IsNullOrEmpty(naam))
@@ -41,6 +46,11 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het immobureau</param>
         /// <returns>ImmoBureau</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public ActionResult<ImmoBureau> GetImmoBureau(int id)
         {
             ImmoBureau immoBureau = _immoBureausRepository.GetById(id);
@@ -54,6 +64,9 @@ namespace HuizenAPI.Controllers
         /// <param name="immoBureauDTO">Nieuw ImmoBureau</param>
         /// <returns>ImmoBureau dat gemaakt werkt</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<ImmoBureau> PostImmoBureau(ImmoBureauDTO immoBureauDTO)
         {
             ImmoBureau immoBureauToCreate = new ImmoBureau(immoBureauDTO.Naam);
@@ -69,6 +82,12 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het te wijzigen ImmoBureau</param>
         /// <param name="immoBureau">Gewijzigd ImmoBureau</param>       
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public IActionResult PutImmoBureau(int id, ImmoBureau immoBureau)
         {
             if(id != immoBureau.ImmoBureauId)
@@ -85,6 +104,11 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="id">Id van het te verwijderen ImmoBureau</param>        
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteImmoBureau(int id)
         {
             ImmoBureau immoBureau = _immoBureausRepository.GetById(id);

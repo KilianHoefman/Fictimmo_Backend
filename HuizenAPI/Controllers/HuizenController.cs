@@ -29,6 +29,10 @@ namespace HuizenAPI.Controllers
         /// <param name="type">Type van het huis (koop of huur) als string</param>
         /// <returns>Array van huizen</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<Huis> GetHuizen(int? price = null, string type = null)
         {
             if (price == null && string.IsNullOrEmpty(type))
@@ -42,6 +46,10 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het huis als int</param>
         /// <returns>Het huis</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Huis> GetHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
@@ -51,6 +59,10 @@ namespace HuizenAPI.Controllers
         }
 
         [HttpGet("GetDetailVoorHuis")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Detail> GetDetailVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
@@ -59,6 +71,10 @@ namespace HuizenAPI.Controllers
         }
 
         [HttpGet("GetLocatieVoorHuis")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Locatie> GetLocatieVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
@@ -67,6 +83,10 @@ namespace HuizenAPI.Controllers
         }
 
         [HttpGet("GetImmoBureauVoorHuis")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<ImmoBureau> GetImmoBureaVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
@@ -80,6 +100,10 @@ namespace HuizenAPI.Controllers
         /// <param name="Naam">Naam als string</param>
         /// <returns>Array van huizen met gespecifieerd immobureau</returns>
         [HttpGet("immoBureau")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<Huis> GetByImmoBureau(string Naam)
         {
             return _huisRepository.GetByImmoBureau(Naam);
@@ -92,6 +116,10 @@ namespace HuizenAPI.Controllers
         /// <param name="Gemeente">Gemeente als string</param>
         /// <returns>Array van huizen die voldoen aan postcode of gemeente</returns>
         [HttpGet("Locatie")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<Huis> GetByLocatie(int? Postcode, string Gemeente)
         {
             return _huisRepository.GetByLocatie(Postcode, Gemeente);
@@ -102,6 +130,9 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="huisDTO">DTO van huis met info</param>        
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Huis> PostHuis(HuisDTO huisDTO)
         {
             Locatie locatie = new Locatie(huisDTO.LocatieDTO.Gemeente, huisDTO.LocatieDTO.Straatnaam, huisDTO.LocatieDTO.Huisnummer, huisDTO.LocatieDTO.Postcode);
@@ -120,6 +151,11 @@ namespace HuizenAPI.Controllers
         /// <param name="id">id van het huis dat gewijzigd dient te worden als int</param>
         /// <param name="huis">Het te wijzigen huis</param>        
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult PutHuis(int id, Huis huis)
         {
             if(id != huis.Id)
@@ -132,6 +168,11 @@ namespace HuizenAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
