@@ -12,6 +12,7 @@ using Web4Api.Models;
 namespace HuizenAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class HuizenController : ControllerBase
     {

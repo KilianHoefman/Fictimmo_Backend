@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HuizenAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class KlantenController : ControllerBase
     {
