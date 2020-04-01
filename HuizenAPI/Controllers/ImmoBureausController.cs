@@ -119,7 +119,7 @@ namespace HuizenAPI.Controllers
             return NoContent();
         }
 
-        /*[HttpPost("{id}")]
+        [HttpPost("{id}")]
         public ActionResult<Huis> PostHuis(int id, HuisDTO huisDTO)
         {
             ImmoBureau immo = _immoBureausRepository.GetById(id);
@@ -132,9 +132,10 @@ namespace HuizenAPI.Controllers
             Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
             var huisToCreate = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, immo);
             immoBureau.AddHuis(huisToCreate);
+            _immoBureausRepository.Add(immo);
             _immoBureausRepository.SaveChanges();
 
             return CreatedAtAction("GetHuis", new { id = immoBureau.ImmoBureauId, huisId = huisToCreate.Id }, huisToCreate);
-        }*/
+        }
     }
 }

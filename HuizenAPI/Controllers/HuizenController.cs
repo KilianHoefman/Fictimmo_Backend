@@ -127,7 +127,7 @@ namespace HuizenAPI.Controllers
         }
 
         /// <summary>
-        /// Voegt een nieuw huis toe
+        /// Voegt een nieuw huis toe aan een immobureau
         /// </summary>
         /// <param name="huisDTO">DTO van huis met info</param>        
         [HttpPost]
@@ -140,6 +140,7 @@ namespace HuizenAPI.Controllers
             Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
             ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureauDTO.Naam);
             Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, immoBureau);
+            immoBureau.AddHuis(huis);
             _huisRepository.Add(huis);
             _huisRepository.SaveChanges();
 
