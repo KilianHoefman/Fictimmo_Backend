@@ -1,5 +1,7 @@
 ﻿using HuizenAPI.Data.Mappers;
 using HuizenAPI.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +11,13 @@ using Web4Api.Models;
 
 namespace HuizenAPI.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Locatie> Locatie { get; set; }
         public DbSet<Detail> Detail { get; set; }
         public DbSet<Klant> Klant { get; set; }
         public DbSet<Huis> Huis { get; set; }
-        public DbSet<ImmoBureau> ImmoBureau { get; set; }
+        public DbSet<ImmoBureau> ImmoBureau { get; set; }        
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

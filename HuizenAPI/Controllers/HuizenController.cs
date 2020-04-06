@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using HuizenAPI.Data.Repositories;
 using HuizenAPI.DTOs;
 using HuizenAPI.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web4Api.Models;
 
 namespace HuizenAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
@@ -100,7 +104,7 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="Naam">Naam als string</param>
         /// <returns>Array van huizen met gespecifieerd immobureau</returns>
-        [HttpGet("immoBureau")]
+        [HttpGet("ImmoBureau")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

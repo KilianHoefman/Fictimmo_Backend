@@ -12,6 +12,6 @@ namespace HuizenAPI.DTOs
         public DateTime GeboorteDatum { get; set; }
         public string Email { get; set; }
         public string TelefoonNummer { get; set; }
-        public ImmoBureauDTO immoBureau { get; set; }
+        public ImmoBureauDTO ImmoBureau { get; set; }
     }
 }

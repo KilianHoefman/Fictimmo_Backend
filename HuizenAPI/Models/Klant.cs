@@ -63,8 +63,8 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value == null || value.Year > 2002)
-                    throw new ArgumentException("Geboortedatum mag later zijn dan 2002 en moet ingevuld zijn");
+                if (value == null)
+                    throw new ArgumentException("Geboortedatum moet ingevuld zijn");
                 _geboorteDatum = value;
             }
         }
@@ -75,7 +75,7 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value == null || string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                     throw new ArgumentException("emailadres mag geen leeg gegeven zijn");
                 _email = value;
             }
@@ -100,8 +100,6 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentException("Immobureau mag geen leeg gegeven zijn");
                 _immoBureau = value;
             }
         }

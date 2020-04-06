@@ -6,6 +6,7 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>6ea2d428-e416-4b31-ae55-ddb5c0192579</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,15 +21,18 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.3" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.5.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.3.0" />
+    <PackageReference Include="NSwag.Core" Version="13.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.3.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>

@@ -72,7 +72,7 @@ namespace HuizenAPI.Controllers
         public ActionResult<Klant> PostKlant(KlantDTO klantDTO)
         {
             
-            Klant klantToCreate = new Klant(klantDTO.Voornaam, klantDTO.Achternaam, klantDTO.GeboorteDatum, klantDTO.Email, klantDTO.TelefoonNummer, new ImmoBureau(klantDTO.immoBureau.Naam));
+            Klant klantToCreate = new Klant(klantDTO.Voornaam, klantDTO.Achternaam, klantDTO.GeboorteDatum, klantDTO.Email, klantDTO.TelefoonNummer, new ImmoBureau(klantDTO.ImmoBureau.Naam));
             _klantenRepository.Add(klantToCreate);
             _klantenRepository.SaveChanges();
 
