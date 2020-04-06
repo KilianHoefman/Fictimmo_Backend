@@ -131,6 +131,34 @@ namespace HuizenAPI.Controllers
         }
 
         /// <summary>
+        /// Geeft alle huizen terug die te huren zijn
+        /// </summary>
+        /// <returns>Array van huizen die te huren zijn</returns>
+        [HttpGet("huren")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IEnumerable<Huis> GetHuurHuizen()
+        {
+            return _huisRepository.GetHuurHuizen();
+        }
+
+        /// <summary>
+        /// Geeft alle huizen terug die te koop zijn
+        /// </summary>
+        /// <returns>Array van huizen die te koop zijn</returns>
+        [HttpGet("kopen")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IEnumerable<Huis> GetKoopHuizen()
+        {
+            return _huisRepository.GetKoopHuizen();
+        }
+
+        /// <summary>
         /// Voegt een nieuw huis toe aan een immobureau
         /// </summary>
         /// <param name="huisDTO">DTO van huis met info</param>        

@@ -64,6 +64,16 @@ namespace HuizenAPI.Data.Repositories
             return GetAll();
         }
 
+        public IEnumerable<Huis> GetHuurHuizen()
+        {
+            return GetAll().Where(h => h.Type.Equals("huur")).ToList();
+        }
+
+        public IEnumerable<Huis> GetKoopHuizen()
+        {
+            return GetAll().Where(h => h.Type.Equals("koop")).ToList();
+        }
+
         public void Update(Huis huis)
         {
             _context.Update(huis);
