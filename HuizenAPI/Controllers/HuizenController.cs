@@ -63,6 +63,11 @@ namespace HuizenAPI.Controllers
             return huis;
         }
 
+        /// <summary>
+        /// Geeft de specifieke details voor een huis terug
+        /// </summary>
+        /// <param name="id">Id van het huis waarvan de details gevraagd worden</param>
+        /// <returns>Details van een specifiek huis</returns>
         [HttpGet("GetDetailVoorHuis")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -75,6 +80,11 @@ namespace HuizenAPI.Controllers
             return huis.Detail;
         }
 
+        /// <summary>
+        /// Geeft de specifieke locatie voor een huis terug
+        /// </summary>
+        /// <param name="id">Id van het huis waarvan de locatie gevraagd wordt</param>
+        /// <returns>Locatie van een specifiek huis</returns>
         [HttpGet("GetLocatieVoorHuis")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -87,6 +97,11 @@ namespace HuizenAPI.Controllers
             return huis.Locatie;
         }
 
+        /// <summary>
+        /// Geeft het immobureau terug van specifiek huis
+        /// </summary>
+        /// <param name="id">Id van het huis waarvan het immobureau gevraagd wordt</param>
+        /// <returns>Immobureau van het huis</returns>
         [HttpGet("GetImmoBureauVoorHuis")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -218,6 +233,5 @@ namespace HuizenAPI.Controllers
             _huisRepository.SaveChanges();
             return NoContent();
         }
-
     }
 }
