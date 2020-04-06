@@ -216,6 +216,10 @@ namespace HuizenAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Verwijdert het huis met id
+        /// </summary>
+        /// <param name="id">Id van het te verwijderen huis</param>        
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
