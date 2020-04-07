@@ -88,7 +88,6 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public IActionResult PutImmoBureau(int id, ImmoBureau immoBureau)
         {
             if(id != immoBureau.ImmoBureauId)
@@ -119,6 +118,12 @@ namespace HuizenAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Voegt een nieuw huis toe aan een bestaand immobureau
+        /// </summary>
+        /// <param name="id">Id van het immobureau waaraan een huis dient toegevoegd te worden</param>
+        /// <param name="huisDTO">DTO van het toe te voegen huis</param>
+        /// <returns>Huis dat toegevoegd werd aan het immobureau</returns>
         [HttpPost("{id}")]
         public ActionResult<Huis> PostHuis(int id, HuisDTO huisDTO)
         {
