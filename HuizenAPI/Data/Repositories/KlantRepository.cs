@@ -1,10 +1,7 @@
 ﻿using HuizenAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Web4Api.Models;
 
 namespace HuizenAPI.Data.Repositories
 {
@@ -66,6 +63,21 @@ namespace HuizenAPI.Data.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public Klant GetByEmail(string email)
+        {
+            return _klanten.SingleOrDefault(k => k.Email.Equals(email));
+        }
+
+        public IEnumerable<Favorieten> GetFavorieten(Klant klant)
+        {
+            int id = klant.KlantenNummer;
+            return _klanten
+                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Locatie)
+                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Detail)
+                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.ImmoBureau)
+                .SingleOrDefault(k => k.KlantenNummer == id).FavorieteHuizen.ToList();
         }
     }
 }

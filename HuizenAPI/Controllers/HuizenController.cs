@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using HuizenAPI.Data.Repositories;
-using HuizenAPI.DTOs;
+﻿using HuizenAPI.DTOs;
 using HuizenAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Web4Api.Models;
+using System.Collections.Generic;
 
 namespace HuizenAPI.Controllers
 {

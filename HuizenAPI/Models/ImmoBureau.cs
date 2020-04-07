@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Web4Api.Models;
 
 namespace HuizenAPI.Models
 {
@@ -18,8 +17,8 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("ID mag niet kleiner dan nul zijn");
+                /*if (value < 0)
+                    throw new ArgumentException("ID mag niet kleiner dan nul zijn");*/
                 _id = value;
             }
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Web4Api.Models
+namespace HuizenAPI.Models
 {
     public class Detail
     {
@@ -63,7 +63,7 @@ namespace Web4Api.Models
                 _totaleOppervlakte = value;
             }
         }
-        public int EPCWaarde { get; set; }
+        public int EPCWaarde { get => _epcWaarde; set => _epcWaarde = value; }
         public int KadastraalInkomen {
             get
             {

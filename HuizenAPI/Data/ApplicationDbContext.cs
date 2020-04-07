@@ -1,13 +1,7 @@
 ﻿using HuizenAPI.Data.Mappers;
 using HuizenAPI.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Web4Api.Models;
 
 namespace HuizenAPI.Data
 {
@@ -17,7 +11,8 @@ namespace HuizenAPI.Data
         public DbSet<Detail> Detail { get; set; }
         public DbSet<Klant> Klant { get; set; }
         public DbSet<Huis> Huis { get; set; }
-        public DbSet<ImmoBureau> ImmoBureau { get; set; }        
+        public DbSet<ImmoBureau> ImmoBureau { get; set; }              
+        public DbSet<Favorieten> Favorieten { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -31,6 +26,7 @@ namespace HuizenAPI.Data
             modelBuilder.ApplyConfiguration(new KlantConfiguration());
             modelBuilder.ApplyConfiguration(new HuisConfiguration());
             modelBuilder.ApplyConfiguration(new ImmoBureauConfiguration());
+            modelBuilder.ApplyConfiguration(new FavorietenConfiguration());
         }
     }
 }

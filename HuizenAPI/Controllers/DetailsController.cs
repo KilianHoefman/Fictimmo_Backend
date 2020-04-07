@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HuizenAPI.DTOs;
+﻿using HuizenAPI.DTOs;
 using HuizenAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Web4Api.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HuizenAPI.Controllers
 {

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HuizenAPI.DTOs;
+﻿using HuizenAPI.DTOs;
 using HuizenAPI.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace HuizenAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
@@ -33,7 +33,6 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public IEnumerable<Klant> GetKlanten(string voornaam = null, string achternaam = null, string email = null, string telefoonNummer = null)
         {
             if (string.IsNullOrEmpty(voornaam) && string.IsNullOrEmpty(achternaam) && string.IsNullOrEmpty(email) && string.IsNullOrEmpty(telefoonNummer))
@@ -51,14 +50,12 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public ActionResult<Klant> GetKlant(int id)
         {
             Klant klant = _klantenRepository.GetById(id);
             if (klant == null) return NotFound();
             return klant;
         }
-
 
         /// <summary>
         /// Voegt een nieuwe klant toe
@@ -71,7 +68,6 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Klant> PostKlant(KlantDTO klantDTO)
         {
-            
             Klant klantToCreate = new Klant(klantDTO.Voornaam, klantDTO.Achternaam, klantDTO.GeboorteDatum, klantDTO.Email, klantDTO.TelefoonNummer, new ImmoBureau(klantDTO.ImmoBureau.Naam));
             _klantenRepository.Add(klantToCreate);
             _klantenRepository.SaveChanges();
@@ -90,10 +86,9 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
         public IActionResult PutKlant(int id, Klant klant)
         {
-            if(id != klant.KlantenNummer)
+            if (id != klant.KlantenNummer)
             {
                 return BadRequest();
             }
@@ -119,6 +114,17 @@ namespace HuizenAPI.Controllers
             _klantenRepository.Delete(klant);
             _klantenRepository.SaveChanges();
             return NoContent();
+        }
+
+        /// <summary>
+        /// Geeft de favoriete huizen weer van de persoon die ingelogd is
+        /// </summary>
+        /// <returns>Array van huizen die als favoriet aangeduid staan</returns>
+        [HttpGet("Favorieten")]
+        public IEnumerable<Favorieten> GetFavorieten()
+        {
+            Klant klant = _klantenRepository.GetByEmail(User.Identity.Name);
+            return _klantenRepository.GetFavorieten(klant);
         }
     }
 }

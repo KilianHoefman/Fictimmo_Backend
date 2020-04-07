@@ -1,10 +1,5 @@
-﻿using HuizenAPI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Threading.Tasks;
-using Web4Api.Models;
 
 namespace HuizenAPI.Models
 {
@@ -103,12 +98,12 @@ namespace HuizenAPI.Models
                 _immoBureau = value;
             }
         }
-        public List<Huis> FavorieteHuizen;
+        public ICollection<Favorieten> FavorieteHuizen;
 
         #region constructor
         public Klant()
         {
-            FavorieteHuizen = new List<Huis>();
+            FavorieteHuizen = new List<Favorieten>();
         }
 
         public Klant(string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer, ImmoBureau immoBureau) : this()
@@ -119,6 +114,17 @@ namespace HuizenAPI.Models
             Email = email;
             TelefoonNummer = telefoonNummer;
             ImmoBureau = immoBureau;
+        }
+        #endregion
+
+        #region methods
+        public void AddFavoriet(Huis huis)
+        {
+            Console.WriteLine("Start of method AddFavoriet");
+            Console.WriteLine(this.Voornaam);
+            Console.WriteLine(huis.Price);
+            FavorieteHuizen.Add(new Favorieten(this, huis));
+            Console.WriteLine(FavorieteHuizen.ToString());
         }
         #endregion
     }

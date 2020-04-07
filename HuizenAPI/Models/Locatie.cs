@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Web4Api.Models
+namespace HuizenAPI.Models
 {
     public class Locatie
     {

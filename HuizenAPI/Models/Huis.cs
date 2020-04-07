@@ -1,7 +1,6 @@
-﻿using HuizenAPI.Models;
-using System;
+﻿using System;
 
-namespace Web4Api.Models
+namespace HuizenAPI.Models
 {
     public class Huis
     {

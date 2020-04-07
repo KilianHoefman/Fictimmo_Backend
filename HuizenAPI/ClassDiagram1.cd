@@ -7,14 +7,14 @@
       <FileName>Models\ImmoBureau.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Web4Api.Models.Detail">
+  <Class Name="HuizenAPI.Models.Detail">
     <Position X="11.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAQAAAAABAAAAAAQAAgACBCAwAAAAIABA=</HashCode>
       <FileName>Models\Detail.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Web4Api.Models.Huis">
+  <Class Name="HuizenAPI.Models.Huis">
     <Position X="7.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgACAABAASABAYQAAABAAAAAAgAAAAKAAQAAAAAAAAA=</HashCode>
@@ -26,7 +26,7 @@
       <Property Name="Details" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Web4Api.Models.Klant">
+  <Class Name="HuizenAPI.Models.Klant">
     <Position X="12" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAgICAIAIAAEAAAAAAAEAAAAAIgAIgAAAEAAAM=</HashCode>
@@ -36,7 +36,7 @@
       <Property Name="ImmoBureau" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Web4Api.Models.Locatie">
+  <Class Name="HuizenAPI.Models.Locatie">
     <Position X="2.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQgAAAAAAAABAIAAAAAAgAABAAAAAAAAAgAAAQIACAA=</HashCode>
