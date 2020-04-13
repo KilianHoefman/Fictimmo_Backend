@@ -8,10 +8,10 @@ namespace HuizenAPI.Controllers
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public new string Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public new string Password { get; set; }
 
         [Required]
         [Compare("Password")]

@@ -15,5 +15,8 @@ namespace HuizenAPI.Models
         IEnumerable<Huis> GetByLocatie(int? Postcode, string gemeente);
         IEnumerable<Huis> GetHuurHuizen();
         IEnumerable<Huis> GetKoopHuizen();
+        IEnumerable<Huis> GetHuizen();
+        IEnumerable<Huis> GetAppartementen();
+        IEnumerable<Huis> GetGronden();
     }
 }

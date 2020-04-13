@@ -3,13 +3,13 @@
 namespace HuizenAPI.Models
 {
     public class Huis
-    {
-        private int _id;
+    {       
         private Locatie _locatie;
         private string _korteBeschrijving;
         private int _price;
         private Detail _detail;
         private string _type;
+        private string _soort;
         private ImmoBureau _immoBureau;
 
         public int Id
@@ -69,7 +69,6 @@ namespace HuizenAPI.Models
             }
         }
 
-
         public string Type
         {
             get
@@ -85,6 +84,21 @@ namespace HuizenAPI.Models
                 else
                     throw new ArgumentException("Fout in setter type...");
                 //CHANGE
+            }
+        }
+
+        public string Soort
+        {
+            get
+            {
+                return _soort;
+            }
+            set
+            {
+
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Soort mag niet leeg zijn");
+                _soort = value;
             }
         }
 
@@ -104,13 +118,14 @@ namespace HuizenAPI.Models
 
         #region constructors
         public Huis() { }
-        public Huis(Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, ImmoBureau immoBureau)
+        public Huis(Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, string soort,ImmoBureau immoBureau)
         {
             Locatie = locatie;
             KorteBeschrijving = korteBeschrijving;
             Price = price;
             Detail = detail;
             Type = type;
+            Soort = soort;
             ImmoBureau = immoBureau;
         }
         #endregion

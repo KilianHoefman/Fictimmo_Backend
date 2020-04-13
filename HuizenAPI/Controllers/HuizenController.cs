@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace HuizenAPI.Controllers
@@ -64,13 +65,15 @@ namespace HuizenAPI.Controllers
         /// <returns>Details van een specifiek huis</returns>
         [HttpGet("GetDetailVoorHuis")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Detail> GetDetailVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
-            if (huis == null) return NotFound();
+                if (huis == null) return NotFound();
+            Console.WriteLine(huis.Detail);
             return huis.Detail;
         }
 
@@ -101,7 +104,7 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<ImmoBureau> GetImmoBureaVoorHuis(int id)
+        public ActionResult<ImmoBureau> GetImmoBureauVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
             if (huis == null) return NotFound();
@@ -168,6 +171,48 @@ namespace HuizenAPI.Controllers
         }
 
         /// <summary>
+        /// Geeft alle huizen terug
+        /// </summary>
+        /// <returns>Array van huizen</returns>
+        [HttpGet("huizen")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IEnumerable<Huis> GetHuizen()
+        {
+            return _huisRepository.GetHuizen();
+        }
+
+        /// <summary>
+        /// Geeft alle appartementen terug
+        /// </summary>
+        /// <returns>Array van Huizen (appartementen)</returns>
+        [HttpGet("appartementen")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IEnumerable<Huis> GetAppartementen()
+        {
+            return _huisRepository.GetAppartementen();
+        }
+
+        /// <summary>
+        /// Geeft alle gronden terug
+        /// </summary>
+        /// <returns>Array van Huizen (gronden)</returns>
+        [HttpGet("gronden")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IEnumerable<Huis> GetGronden()
+        {
+            return _huisRepository.GetGronden();
+        }
+
+        /// <summary>
         /// Voegt een nieuw huis toe aan een immobureau
         /// </summary>
         /// <param name="huisDTO">DTO van huis met info</param>        
@@ -180,7 +225,7 @@ namespace HuizenAPI.Controllers
             Locatie locatie = new Locatie(huisDTO.LocatieDTO.Gemeente, huisDTO.LocatieDTO.Straatnaam, huisDTO.LocatieDTO.Huisnummer, huisDTO.LocatieDTO.Postcode);
             Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
             ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureauDTO.Naam);
-            Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, immoBureau);
+            Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, huisDTO.Soort, immoBureau);
             immoBureau.AddHuis(huis);
             _huisRepository.Add(huis);
             _huisRepository.SaveChanges();

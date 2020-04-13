@@ -44,7 +44,7 @@ namespace HuizenAPI.Data.Repositories
 
         public Huis GetById(int id)
         {
-            return _huizen.Include(h => h.ImmoBureau).Include(h => h.Locatie).SingleOrDefault(h => h.Id == id);
+            return _huizen.Include(h => h.ImmoBureau).Include(h => h.Locatie).Include(h => h.Detail).SingleOrDefault(h => h.Id == id);
         }
         public IEnumerable<Huis> GetByImmoBureau(string Naam)
         {
@@ -69,6 +69,21 @@ namespace HuizenAPI.Data.Repositories
         public IEnumerable<Huis> GetKoopHuizen()
         {
             return GetAll().Where(h => h.Type.Equals("koop")).ToList();
+        }
+
+        public IEnumerable<Huis> GetHuizen()
+        {
+            return GetAll().Where(h => h.Soort.ToLower().Equals("huis")).ToList();
+        }
+
+        public IEnumerable<Huis> GetAppartementen()
+        {
+            return GetAll().Where(h => h.Soort.ToLower().Equals("app")).ToList();
+        }
+
+        public IEnumerable<Huis> GetGronden()
+        {
+            return GetAll().Where(h => h.Soort.ToLower().Contains("grond")).ToList();
         }
 
         public void Update(Huis huis)

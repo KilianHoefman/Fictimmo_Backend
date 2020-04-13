@@ -73,11 +73,13 @@ namespace HuizenAPI.Data.Repositories
         public IEnumerable<Favorieten> GetFavorieten(Klant klant)
         {
             int id = klant.KlantenNummer;
-            return _klanten
+            return _klanten.SingleOrDefault(k => k.KlantenNummer == id)
+                .FavorieteHuizen.ToList();
+            /*return _klanten
                 .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Locatie)
                 .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Detail)
                 .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.ImmoBureau)
-                .SingleOrDefault(k => k.KlantenNummer == id).FavorieteHuizen.ToList();
+                .SingleOrDefault(k => k.KlantenNummer == id).FavorieteHuizen.ToList();*/
         }
     }
 }

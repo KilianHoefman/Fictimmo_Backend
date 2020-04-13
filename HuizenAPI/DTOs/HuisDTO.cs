@@ -15,6 +15,8 @@ namespace HuizenAPI.DTOs
         [Required]
         public string Type { get; set; }
         [Required]
+        public string Soort { get; set; }
+        [Required]
         public ImmoBureauDTO ImmoBureauDTO { get; set; }
     }
 }

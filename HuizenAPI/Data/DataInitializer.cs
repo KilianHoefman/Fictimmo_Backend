@@ -41,9 +41,9 @@ namespace HuizenAPI.Data
                 ImmoBureau[] immoBureaus = new ImmoBureau[] { Nobels, DaVinci, CD };
                 
 
-                Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", Nobels);
-                Huis Huis2 = new Huis(Gent2, "Dit is een korte beschrijving v2", 452000, Detail2, "koop", CD);
-                Huis Huis3 = new Huis(Merelbeke, "Dit is een korte beschrijving v3", 4500, Detail3, "huur", DaVinci);
+                Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", "huis",Nobels);
+                Huis Huis2 = new Huis(Gent2, "Dit is een korte beschrijving v2", 452000, Detail2, "koop", "appartement", CD);
+                Huis Huis3 = new Huis(Merelbeke, "Dit is een korte beschrijving v3", 4500, Detail3, "huur", "huis", DaVinci);
                 Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3 };
                 _dbContext.Huis.AddRange(huizen);
                 Console.WriteLine("Huizen toegevoegd");
@@ -52,13 +52,15 @@ namespace HuizenAPI.Data
                 CD.AddHuis(Huis2);
                 DaVinci.AddHuis(Huis3);
                 _dbContext.AddRange(immoBureaus);
-                Console.WriteLine("ImmoBureaus toegevoegd");
+                Console.WriteLine("ImmoBureaus toegevoegd");               
 
                 Klant klant1 = new Klant("Jan", "Janssens", DateTime.Now, "JanJanssens@huizen.be", "+32412345678", Nobels);
                 Console.WriteLine("Beginnen met favoriet toe te voegen");
-                klant1.AddFavoriet(Huis2);
+                Favorieten favoriet1 = new Favorieten(klant1, Huis1);
+                
                 Console.WriteLine("Favoriet toegevoegd");
-                _dbContext.Klant.Add(klant1);
+                _dbContext.Favorieten.Add(favoriet1);
+                _dbContext.Klant.AddRange(klant1);
 
                 Console.WriteLine("klant toegevoegd");
 
