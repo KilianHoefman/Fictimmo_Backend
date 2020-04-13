@@ -78,7 +78,7 @@ namespace HuizenAPI.Data.Repositories
 
         public IEnumerable<Huis> GetAppartementen()
         {
-            return GetAll().Where(h => h.Soort.ToLower().Equals("app")).ToList();
+            return GetAll().Where(h => h.Soort.ToLower().Contains("app")).ToList();
         }
 
         public IEnumerable<Huis> GetGronden()
