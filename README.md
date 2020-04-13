@@ -8,10 +8,7 @@ Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich
 
 ## Requirements backend Web IV
 
-#### De GIT repo voor de backend is aangemaakt
-- [x] 
-
-#### De readme
+#### De readme --> TO DO
 - [ ] Printscreen van de API zoals weergegeven in swagger. Per endpoint een printscreen van de parameters en de responses
 - [ ] Printscreen van het klassendiagram van de domeinlaag (toont de klassen met properties en methodes (inclusief de datatypes) en de associaties)
 - [ ] Opsomming van de instellingen die nodig zijn om je backend project lokaal te runnen, indien nodig
