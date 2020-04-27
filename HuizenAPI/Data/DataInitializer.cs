@@ -24,14 +24,22 @@ namespace HuizenAPI.Data
                 Locatie Gent1 = new Locatie("Gent", "Vlaanderenstraat", "1A", 9000);
                 Locatie Gent2 = new Locatie("Gent", "Overpoortstraat", "6", 9000);
                 Locatie Merelbeke = new Locatie("Merelbeke", "Sint-elooistraat", "72", 9820);
-                Locatie[] locaties = new Locatie[] { Gent1, Gent2, Merelbeke };
+                Locatie Lokeren = new Locatie("Lokeren", "Nijsstraat", "69", 9160);
+                Locatie Nieuwpoort = new Locatie("Nieuwpoort", "Vlaanderenstraat", "4", 8620);
+                Locatie Waasmunster = new Locatie("Waasmunster", "Muizenberg", "12", 9250);
+                Locatie Wondelgem = new Locatie("Wondelgem", "Vierweegsestraat", "6", 9032);
+                Locatie[] locaties = new Locatie[] { Gent1, Gent2, Merelbeke, Lokeren, Nieuwpoort, Waasmunster, Wondelgem };
                 _dbContext.Locatie.AddRange(locaties);
                 Console.WriteLine("Locaties toegevoegd");
 
                 Detail Detail1 = new Detail("Dit is een lange beschrijving", 200, 250, 200, 1400);
                 Detail Detail2 = new Detail("Dit is een lange beschrijving v2", 400, 800, 733, 3466);
                 Detail Detail3 = new Detail("Dit is een lange beschrijving v3", 600, 1200, 560, 4500);
-                Detail[] details = new Detail[] { Detail1, Detail2, Detail3 };
+                Detail Detail4 = new Detail("Dit is een lange beschrijving v4", 220, 650, 420, 950);
+                Detail Detail5 = new Detail("Dit is een lange beschrijving v5", 260, 350, 530, 1200);
+                Detail Detail6 = new Detail("Dit is een lange beschrijving v6", 800, 5000, 330, 1560);
+                Detail Detail7 = new Detail("Dit is een lange beschrijving v7", 650, 2000, 500, 1250);
+                Detail[] details = new Detail[] { Detail1, Detail2, Detail3, Detail4, Detail5, Detail6, Detail7 };
                 _dbContext.Detail.AddRange(details);
                 Console.WriteLine("Details toegevoegd");
 
@@ -39,27 +47,31 @@ namespace HuizenAPI.Data
                 ImmoBureau DaVinci = new ImmoBureau("Immo Da Vinci");
                 ImmoBureau CD = new ImmoBureau("CD-Vastgoed");
                 ImmoBureau[] immoBureaus = new ImmoBureau[] { Nobels, DaVinci, CD };
-                
 
-                Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", "huis",Nobels);
+
+                Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", "huis", Nobels);
                 Huis Huis2 = new Huis(Gent2, "Dit is een korte beschrijving v2", 452000, Detail2, "koop", "appartement", CD);
                 Huis Huis3 = new Huis(Merelbeke, "Dit is een korte beschrijving v3", 4500, Detail3, "huur", "huis", DaVinci);
-                Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3 };
+                Huis Huis4 = new Huis(Lokeren, "Dit is een korte beschrijving v4", 419000, Detail4, "koop", "huis", Nobels);
+                Huis Huis5 = new Huis(Nieuwpoort, "Dit is een korte beschrijving v5", 2000, Detail5, "huur", "appartement", DaVinci);
+                Huis Huis6 = new Huis(Waasmunster, "Dit is een korte beschrijving v6", 1000000, Detail6, "koop", "huis", Nobels);
+                Huis Huis7 = new Huis(Wondelgem, "Dit is een korte beschrijving v7", 820000, Detail7, "koop", "huis", CD);
+                Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3, Huis4, Huis5, Huis6, Huis7 };
                 _dbContext.Huis.AddRange(huizen);
                 Console.WriteLine("Huizen toegevoegd");
 
                 Nobels.AddHuis(Huis1);
+                Nobels.AddHuis(Huis4);
+                Nobels.AddHuis(Huis6);
                 CD.AddHuis(Huis2);
+                CD.AddHuis(Huis7);
                 DaVinci.AddHuis(Huis3);
+                DaVinci.AddHuis(Huis5);
                 _dbContext.AddRange(immoBureaus);
-                Console.WriteLine("ImmoBureaus toegevoegd");               
+                Console.WriteLine("ImmoBureaus toegevoegd");
 
-                Klant klant1 = new Klant("Jan", "Janssens", DateTime.Now, "JanJanssens@huizen.be", "+32412345678", Nobels);
-                Console.WriteLine("Beginnen met favoriet toe te voegen");
-                Favorieten favoriet1 = new Favorieten(klant1, Huis1);
-                
-                Console.WriteLine("Favoriet toegevoegd");
-                _dbContext.Favorieten.Add(favoriet1);
+                Klant klant1 = new Klant("Jan", "Janssens", DateTime.Now, "admin@huizen.be", "+32412345678", Nobels);
+
                 _dbContext.Klant.AddRange(klant1);
 
                 Console.WriteLine("klant toegevoegd");
