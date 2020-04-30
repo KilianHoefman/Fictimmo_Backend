@@ -45,7 +45,7 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Bewoonbare oppervlakte moet positief zijn en mag niet gelijk zijn aan nul");
                 _bewoonbareOppervlakte = value;
             }
@@ -57,7 +57,7 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Totale oppervlakte mag niet kleiner of " +
                         "gelijk zijn aan nul");
                 _totaleOppervlakte = value;
@@ -71,7 +71,7 @@ namespace HuizenAPI.Models
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentException("Kadastraal inkomen kan niet kleiner of gelijk zijn aan nul");
                 _kadastraalInkomen = value;
             }

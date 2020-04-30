@@ -29,12 +29,13 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
-        public IEnumerable<ImmoBureau> GetImmoBureaus(string naam)
+        public IEnumerable<ImmoBureauDTO> GetImmoBureaus()
         {
-            if (string.IsNullOrEmpty(naam))
-                return _immoBureausRepository.GetAll().OrderBy(i => i.Naam);
-            return _immoBureausRepository.GetBy(naam);
+            IEnumerable<ImmoBureauDTO> bureaus = _immoBureausRepository.GetAll().ToList().Select(bureau => new ImmoBureauDTO
+            {
+                Naam = bureau.Naam
+            });
+            return bureaus;
         }
 
 

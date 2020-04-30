@@ -39,7 +39,8 @@ namespace HuizenAPI.Data
                 Detail Detail5 = new Detail("Dit is een lange beschrijving v5", 260, 350, 530, 1200);
                 Detail Detail6 = new Detail("Dit is een lange beschrijving v6", 800, 5000, 330, 1560);
                 Detail Detail7 = new Detail("Dit is een lange beschrijving v7", 650, 2000, 500, 1250);
-                Detail[] details = new Detail[] { Detail1, Detail2, Detail3, Detail4, Detail5, Detail6, Detail7 };
+                Detail Detail8 = new Detail("Uniek gelegen bouwgrond", 540, 1800, 0, 0);
+                Detail[] details = new Detail[] { Detail1, Detail2, Detail3, Detail4, Detail5, Detail6, Detail7, Detail8 };
                 _dbContext.Detail.AddRange(details);
                 Console.WriteLine("Details toegevoegd");
 
@@ -56,7 +57,8 @@ namespace HuizenAPI.Data
                 Huis Huis5 = new Huis(Nieuwpoort, "Dit is een korte beschrijving v5", 2000, Detail5, "huur", "appartement", DaVinci);
                 Huis Huis6 = new Huis(Waasmunster, "Dit is een korte beschrijving v6", 1000000, Detail6, "koop", "huis", Nobels);
                 Huis Huis7 = new Huis(Wondelgem, "Dit is een korte beschrijving v7", 820000, Detail7, "koop", "huis", CD);
-                Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3, Huis4, Huis5, Huis6, Huis7 };
+                Huis Huis8 = new Huis(Merelbeke, "Bouwgrond", 345000, Detail8, "koop", "grond", CD);
+                Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3, Huis4, Huis5, Huis6, Huis7, Huis8 };
                 _dbContext.Huis.AddRange(huizen);
                 Console.WriteLine("Huizen toegevoegd");
 
@@ -65,6 +67,7 @@ namespace HuizenAPI.Data
                 Nobels.AddHuis(Huis6);
                 CD.AddHuis(Huis2);
                 CD.AddHuis(Huis7);
+                CD.AddHuis(Huis8);
                 DaVinci.AddHuis(Huis3);
                 DaVinci.AddHuis(Huis5);
                 _dbContext.AddRange(immoBureaus);
