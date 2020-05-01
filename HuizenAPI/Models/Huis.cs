@@ -3,7 +3,7 @@
 namespace HuizenAPI.Models
 {
     public class Huis
-    {       
+    {
         private Locatie _locatie;
         private string _korteBeschrijving;
         private int _price;
@@ -118,7 +118,7 @@ namespace HuizenAPI.Models
 
         #region constructors
         public Huis() { }
-        public Huis(Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, string soort,ImmoBureau immoBureau)
+        public Huis(Locatie locatie, string korteBeschrijving, int price, Detail detail, string type, string soort, ImmoBureau immoBureau)
         {
             Locatie = locatie;
             KorteBeschrijving = korteBeschrijving;

@@ -1,9 +1,7 @@
 ﻿using HuizenAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace HuizenAPI.Data.Repositories
 {
@@ -52,12 +50,6 @@ namespace HuizenAPI.Data.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
-        }
-
-        public bool TryGetImmoBureau(int id, out ImmoBureau immoBureau)
-        {
-            immoBureau = _context.ImmoBureau.Include(i => i.Huizen).FirstOrDefault(i => i.ImmoBureauId == id);
-            return immoBureau != null;
         }
     }
 }

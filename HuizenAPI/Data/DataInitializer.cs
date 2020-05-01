@@ -48,7 +48,7 @@ namespace HuizenAPI.Data
                 ImmoBureau DaVinci = new ImmoBureau("Immo Da Vinci");
                 ImmoBureau CD = new ImmoBureau("CD-Vastgoed");
                 ImmoBureau[] immoBureaus = new ImmoBureau[] { Nobels, DaVinci, CD };
-
+                _dbContext.AddRange(immoBureaus);
 
                 Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", "huis", Nobels);
                 Huis Huis2 = new Huis(Gent2, "Dit is een korte beschrijving v2", 452000, Detail2, "koop", "appartement", CD);
@@ -62,15 +62,6 @@ namespace HuizenAPI.Data
                 _dbContext.Huis.AddRange(huizen);
                 Console.WriteLine("Huizen toegevoegd");
 
-                Nobels.AddHuis(Huis1);
-                Nobels.AddHuis(Huis4);
-                Nobels.AddHuis(Huis6);
-                CD.AddHuis(Huis2);
-                CD.AddHuis(Huis7);
-                CD.AddHuis(Huis8);
-                DaVinci.AddHuis(Huis3);
-                DaVinci.AddHuis(Huis5);
-                _dbContext.AddRange(immoBureaus);
                 Console.WriteLine("ImmoBureaus toegevoegd");
 
                 Klant klant1 = new Klant("Jan", "Janssens", DateTime.Now, "admin@huizen.be", "+32412345678", Nobels);

@@ -9,7 +9,8 @@ using System.Collections.Generic;
 
 namespace HuizenAPI.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AllowAnonymous]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
@@ -72,7 +73,7 @@ namespace HuizenAPI.Controllers
         public ActionResult<Detail> GetDetailVoorHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
-                if (huis == null) return NotFound();
+            if (huis == null) return NotFound();
             Console.WriteLine(huis.Detail);
             return huis.Detail;
         }
@@ -211,9 +212,9 @@ namespace HuizenAPI.Controllers
         {
             return _huisRepository.GetGronden();
         }
-
+       
         /// <summary>
-        /// Voegt een nieuw huis toe aan een immobureau
+        /// Voegt een nieuw huis toe
         /// </summary>
         /// <param name="huisDTO">DTO van huis met info</param>        
         [HttpPost]
@@ -222,11 +223,10 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Huis> PostHuis(HuisDTO huisDTO)
         {
-            Locatie locatie = new Locatie(huisDTO.LocatieDTO.Gemeente, huisDTO.LocatieDTO.Straatnaam, huisDTO.LocatieDTO.Huisnummer, huisDTO.LocatieDTO.Postcode);
-            Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
-            ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureauDTO.Naam);
+            Locatie locatie = new Locatie(huisDTO.Locatie.Gemeente, huisDTO.Locatie.Straatnaam, huisDTO.Locatie.Huisnummer, huisDTO.Locatie.Postcode);
+            Detail detail = new Detail(huisDTO.Detail.LangeBeschrijving, huisDTO.Detail.BewoonbareOppervlakte, huisDTO.Detail.TotaleOppervlakte, huisDTO.Detail.EPCWaarde, huisDTO.Detail.KadastraalInkomen);
+            ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureau.Naam);
             Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, huisDTO.Soort, immoBureau);
-            immoBureau.AddHuis(huis);
             _huisRepository.Add(huis);
             _huisRepository.SaveChanges();
 
@@ -246,7 +246,7 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult PutHuis(int id, Huis huis)
         {
-            if(id != huis.Id)
+            if (id != huis.Id)
             {
                 return BadRequest();
             }
@@ -268,7 +268,7 @@ namespace HuizenAPI.Controllers
         public IActionResult DeleteHuis(int id)
         {
             Huis huis = _huisRepository.GetById(id);
-            if(huis == null)
+            if (huis == null)
             {
                 return NotFound();
             }

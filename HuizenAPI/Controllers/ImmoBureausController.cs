@@ -31,13 +31,12 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IEnumerable<ImmoBureauDTO> GetImmoBureaus()
         {
-            IEnumerable<ImmoBureauDTO> bureaus = _immoBureausRepository.GetAll().ToList().Select(bureau => new ImmoBureauDTO
+            IEnumerable<ImmoBureauDTO> bureaus = _immoBureausRepository.GetAll().ToList().Distinct().Select(bureau => new ImmoBureauDTO
             {
                 Naam = bureau.Naam
             });
             return bureaus;
         }
-
 
         /// <summary>
         /// Geef immobureau met id
@@ -88,7 +87,7 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult PutImmoBureau(int id, ImmoBureau immoBureau)
         {
-            if(id != immoBureau.ImmoBureauId)
+            if (id != immoBureau.ImmoBureauId)
             {
                 return BadRequest();
             }
@@ -114,31 +113,6 @@ namespace HuizenAPI.Controllers
             _immoBureausRepository.Delete(immoBureau);
             _immoBureausRepository.SaveChanges();
             return NoContent();
-        }
-
-        /// <summary>
-        /// Voegt een nieuw huis toe aan een bestaand immobureau
-        /// </summary>
-        /// <param name="id">Id van het immobureau waaraan een huis dient toegevoegd te worden</param>
-        /// <param name="huisDTO">DTO van het toe te voegen huis</param>
-        /// <returns>Huis dat toegevoegd werd aan het immobureau</returns>
-        [HttpPost("{id}")]
-        public ActionResult<Huis> PostHuis(int id, HuisDTO huisDTO)
-        {
-            ImmoBureau immo = _immoBureausRepository.GetById(id);
-            if (immo == null) return NotFound();
-            if(!_immoBureausRepository.TryGetImmoBureau(id, out var immoBureau))
-            {
-                return NotFound();
-            }
-            Locatie locatie = new Locatie(huisDTO.LocatieDTO.Gemeente, huisDTO.LocatieDTO.Straatnaam, huisDTO.LocatieDTO.Huisnummer, huisDTO.LocatieDTO.Postcode);
-            Detail detail = new Detail(huisDTO.DetailDTO.LangeBeschrijving, huisDTO.DetailDTO.BewoonbareOppervlakte, huisDTO.DetailDTO.TotaleOppervlakte, huisDTO.DetailDTO.EPCWaarde, huisDTO.DetailDTO.KadastraalInkomen);
-            var huisToCreate = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, huisDTO.Soort, immo);
-            immoBureau.AddHuis(huisToCreate);
-            _immoBureausRepository.Add(immo);
-            _immoBureausRepository.SaveChanges();
-
-            return CreatedAtAction("GetHuis", new { id = immoBureau.ImmoBureauId, huisId = huisToCreate.Id }, huisToCreate);
         }
     }
 }

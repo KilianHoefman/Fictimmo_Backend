@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HuizenAPI.Models
 {
@@ -10,7 +7,6 @@ namespace HuizenAPI.Models
         ImmoBureau GetById(int id);
         IEnumerable<ImmoBureau> GetAll();
         IEnumerable<ImmoBureau> GetBy(string naam);
-        bool TryGetImmoBureau(int id, out ImmoBureau immoBureau);
         void Add(ImmoBureau immoBureau);
         void Delete(ImmoBureau immoBureau);
         void Update(ImmoBureau immoBureau);

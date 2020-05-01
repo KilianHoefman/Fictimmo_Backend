@@ -17,8 +17,6 @@ namespace HuizenAPI.Models
             }
             set
             {
-                /*if (value < 0)
-                    throw new ArgumentException("ID mag niet kleiner dan nul zijn");*/
                 _id = value;
             }
         }
@@ -35,29 +33,16 @@ namespace HuizenAPI.Models
                 _naam = value;
             }
         }
-        public ICollection<Huis> Huizen { get; set; }
 
         #region constructors
         public ImmoBureau()
         {
-            Huizen = new List<Huis>();
+
         }
 
         public ImmoBureau(string naam) : this()
         {
             Naam = naam;
-        }
-        #endregion
-
-        #region methods
-        public void AddHuis(Huis huis)
-        {
-            Huizen.Add(huis);
-        }
-
-        public Huis GetHuis(int id)
-        {
-            return Huizen.SingleOrDefault(huis => huis.Id == id);
         }
         #endregion
     }
