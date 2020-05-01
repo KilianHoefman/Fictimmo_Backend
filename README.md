@@ -2,8 +2,8 @@
 ### GitHub repository voor backend API van een (fictieve) ImmoWebsite
 Deze applicatie runt op Visual Studio 2017 op Windows, alsook op Visual Studio for Mac (met de nodige aanvulling van de user secret token).
 
-De bedoeling van deze backend applciatie is het opslaan van gegevens van Huizen, de daarbijhorende details en locatie.
-Elk huis heeft een ImmoBureau en dit heeft Klanten.
+De bedoeling van deze backend applicatie is het opslaan van gegevens van Huizen, de daarbijhorende details en locatie.
+Elk huis heeft een ImmoBureau
 Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich geregistreerd heeft).
 
 ## Requirements backend Web IV
