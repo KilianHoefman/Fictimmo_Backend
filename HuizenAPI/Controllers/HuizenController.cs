@@ -212,7 +212,7 @@ namespace HuizenAPI.Controllers
         {
             return _huisRepository.GetGronden();
         }
-       
+
         /// <summary>
         /// Voegt een nieuw huis toe
         /// </summary>

@@ -32,7 +32,7 @@ namespace HuizenAPI.Data.Repositories
             return _klanten.ToList();
         }
 
-        public IEnumerable<Klant> GetBy(string voornaam = null, string achternaam = null, string email = null, string telefoonNummer = null)
+        public IEnumerable<Klant> GetBy(string voornaam = null, string achternaam = null, string email = null)
         {
             var klanten = _klanten.AsQueryable();
             if (!string.IsNullOrEmpty(voornaam))
@@ -41,18 +41,12 @@ namespace HuizenAPI.Data.Repositories
                 klanten = klanten.Where(k => k.Achternaam.IndexOf(achternaam) >= 0);
             if (!string.IsNullOrEmpty(email))
                 klanten = klanten.Where(k => k.Email.IndexOf(email) >= 0);
-            if (!string.IsNullOrEmpty(telefoonNummer))
-                klanten = klanten.Where(k => k.TelefoonNummer.IndexOf(telefoonNummer) >= 0);
             return klanten.OrderBy(r => r.Achternaam).ToList();
         }
-                
+
         public Klant GetById(int id)
         {
             return _klanten.SingleOrDefault(k => k.KlantenNummer == id);
-        }
-        public Klant GetByImmoBureau(ImmoBureau immoBureau)
-        {
-            return _klanten.SingleOrDefault(k => k.ImmoBureau == immoBureau);
         }
 
         public void Update(Klant klant)
@@ -68,18 +62,6 @@ namespace HuizenAPI.Data.Repositories
         public Klant GetByEmail(string email)
         {
             return _klanten.SingleOrDefault(k => k.Email.Equals(email));
-        }
-
-        public IEnumerable<Favorieten> GetFavorieten(Klant klant)
-        {
-            int id = klant.KlantenNummer;
-            return _klanten.SingleOrDefault(k => k.KlantenNummer == id)
-                .FavorieteHuizen.ToList();
-            /*return _klanten
-                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Locatie)
-                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.Detail)
-                .Include(k => k.FavorieteHuizen).ThenInclude(h => h.Huis).ThenInclude(h => h.ImmoBureau)
-                .SingleOrDefault(k => k.KlantenNummer == id).FavorieteHuizen.ToList();*/
         }
     }
 }

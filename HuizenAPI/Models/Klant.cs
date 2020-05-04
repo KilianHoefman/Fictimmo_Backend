@@ -9,13 +9,12 @@ namespace HuizenAPI.Models
         private int _klantenNummer;
         private string _voornaam;
         private string _achternaam;
-        private DateTime _geboorteDatum;
-        private string _email; 
-        private string _telefoonNummer;
-        private ImmoBureau _immoBureau;
+        //private DateTime _geboorteDatum;
+        private string _email;
         #endregion
 
-        public int KlantenNummer {
+        public int KlantenNummer
+        {
             get
             {
                 return _klantenNummer;
@@ -27,7 +26,8 @@ namespace HuizenAPI.Models
                 _klantenNummer = value;
             }
         }
-        public string Voornaam {
+        public string Voornaam
+        {
             get
             {
                 return _voornaam;
@@ -39,7 +39,8 @@ namespace HuizenAPI.Models
                 _voornaam = value;
             }
         }
-        public string Achternaam {
+        public string Achternaam
+        {
             get
             {
                 return _achternaam;
@@ -51,19 +52,20 @@ namespace HuizenAPI.Models
                 _achternaam = value;
             }
         }
-        public DateTime GeboorteDatum {
-            get
-            {
-                return _geboorteDatum;
-            }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentException("Geboortedatum moet ingevuld zijn");
-                _geboorteDatum = value;
-            }
-        }
-        public string Email {
+        //public DateTime GeboorteDatum {
+        //    get
+        //    {
+        //        return _geboorteDatum;
+        //    }
+        //    set
+        //    {
+        //        if (value == null)
+        //            throw new ArgumentException("Geboortedatum moet ingevuld zijn");
+        //        _geboorteDatum = value;
+        //    }
+        //}
+        public string Email
+        {
             get
             {
                 return _email;
@@ -75,57 +77,22 @@ namespace HuizenAPI.Models
                 _email = value;
             }
         }
-        public string TelefoonNummer {
-            get
-            {
-                return _telefoonNummer;
-            }
-            set
-            {
-                if (value == null || string.IsNullOrEmpty(value))
-                    throw new ArgumentException("Telefoonnummer mag geen leeg gegeven zijn");
-                _telefoonNummer = value;
-            }
-        }
-        public ImmoBureau ImmoBureau
-        {
-            get
-            {
-                return _immoBureau;
-            }
-            set
-            {
-                _immoBureau = value;
-            }
-        }
-        public ICollection<Favorieten> FavorieteHuizen;
-
         #region constructor
         public Klant()
         {
-            FavorieteHuizen = new List<Favorieten>();
+
         }
 
-        public Klant(string voornaam, string achternaam, DateTime geboorteDatum, string email, string telefoonNummer, ImmoBureau immoBureau) : this()
+        public Klant(string voornaam, string achternaam, string email) : this()
         {
             Voornaam = voornaam;
             Achternaam = achternaam;
-            GeboorteDatum = geboorteDatum;
+            //GeboorteDatum = geboorteDatum;
             Email = email;
-            TelefoonNummer = telefoonNummer;
-            ImmoBureau = immoBureau;
         }
         #endregion
 
         #region methods
-        public void AddFavoriet(Huis huis)
-        {
-            Console.WriteLine("Start of method AddFavoriet");
-            Console.WriteLine(this.Voornaam);
-            Console.WriteLine(huis.Price);
-            FavorieteHuizen.Add(new Favorieten(this, huis));
-            Console.WriteLine(FavorieteHuizen.ToString());
-        }
         #endregion
     }
 }

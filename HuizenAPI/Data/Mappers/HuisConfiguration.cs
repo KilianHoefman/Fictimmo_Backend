@@ -19,7 +19,7 @@ namespace HuizenAPI.Data.Mappers
             builder
                 .HasOne(h => h.ImmoBureau)
                 .WithMany();
-                
+
         }
     }
 }

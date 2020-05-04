@@ -9,9 +9,8 @@ namespace HuizenAPI.DTOs
     {
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
-        public DateTime GeboorteDatum { get; set; }
+        //public DateTime GeboorteDatum { get; set; }
         public string Email { get; set; }
         public string TelefoonNummer { get; set; }
-        public ImmoBureauDTO ImmoBureau { get; set; }
     }
 }

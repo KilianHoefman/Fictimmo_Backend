@@ -74,9 +74,9 @@ namespace HuizenAPI.Controllers
         public async Task<ActionResult<String>> Register(RegisterDTO model)
         {
             IdentityUser user = new IdentityUser { UserName = model.Email, Email = model.Email };
-            ImmoBureau immoBureau = new ImmoBureau(model.ImmoBureau.Naam);
-            Klant klant = new Klant { Achternaam = model.Achternaam, GeboorteDatum = model.GeboorteDatum, Email = model.Email, TelefoonNummer = model.TelefoonNummer, ImmoBureau = immoBureau };
+            Klant klant = new Klant { Voornaam = model.Voornaam, Achternaam = model.Achternaam, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
                 _klantRepository.Add(klant);

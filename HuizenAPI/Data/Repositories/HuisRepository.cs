@@ -34,7 +34,7 @@ namespace HuizenAPI.Data.Repositories
 
         public IEnumerable<Huis> GetBy(int? price = null, string type = null)
         {
-            var huizen = _huizen.AsQueryable();                        
+            var huizen = _huizen.AsQueryable();
             if (price != null)
                 huizen = huizen.Where(h => h.Price == price);
             if (!string.IsNullOrEmpty(type))
@@ -54,7 +54,7 @@ namespace HuizenAPI.Data.Repositories
         public IEnumerable<Huis> GetByLocatie(int? Postcode, string Gemeente = null)
         {
             var huizen = _huizen.AsQueryable();
-            if(Postcode != null)
+            if (Postcode != null)
                 return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Postcode == Postcode);
             if (!string.IsNullOrEmpty(Gemeente))
                 return _huizen.Include(h => h.Locatie).Where(l => l.Locatie.Gemeente.Equals(Gemeente));

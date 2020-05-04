@@ -64,7 +64,7 @@ namespace HuizenAPI.Data
 
                 Console.WriteLine("ImmoBureaus toegevoegd");
 
-                Klant klant1 = new Klant("Jan", "Janssens", DateTime.Now, "admin@huizen.be", "+32412345678", Nobels);
+                Klant klant1 = new Klant("Jan", "Janssens", "admin@huizen.be");
 
                 _dbContext.Klant.AddRange(klant1);
 

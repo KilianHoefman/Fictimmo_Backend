@@ -37,7 +37,7 @@ namespace HuizenAPI.Controllers
         {
             if (string.IsNullOrEmpty(voornaam) && string.IsNullOrEmpty(achternaam) && string.IsNullOrEmpty(email) && string.IsNullOrEmpty(telefoonNummer))
                 return _klantenRepository.GetAll();
-            return _klantenRepository.GetBy(voornaam, achternaam, email, telefoonNummer);
+            return _klantenRepository.GetBy(voornaam, achternaam, email);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace HuizenAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Klant> PostKlant(KlantDTO klantDTO)
         {
-            Klant klantToCreate = new Klant(klantDTO.Voornaam, klantDTO.Achternaam, klantDTO.GeboorteDatum, klantDTO.Email, klantDTO.TelefoonNummer, new ImmoBureau(klantDTO.ImmoBureau.Naam));
+            Klant klantToCreate = new Klant(klantDTO.Voornaam, klantDTO.Achternaam, klantDTO.Email);
             _klantenRepository.Add(klantToCreate);
             _klantenRepository.SaveChanges();
 
@@ -114,17 +114,6 @@ namespace HuizenAPI.Controllers
             _klantenRepository.Delete(klant);
             _klantenRepository.SaveChanges();
             return NoContent();
-        }
-
-        /// <summary>
-        /// Geeft de favoriete huizen weer van de persoon die ingelogd is
-        /// </summary>
-        /// <returns>Array van huizen die als favoriet aangeduid staan</returns>
-        [HttpGet("Favorieten")]
-        public IEnumerable<Favorieten> GetFavorieten()
-        {
-            Klant klant = _klantenRepository.GetByEmail(User.Identity.Name);
-            return _klantenRepository.GetFavorieten(klant);
         }
     }
 }
