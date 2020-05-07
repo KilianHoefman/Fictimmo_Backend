@@ -13,7 +13,9 @@ namespace HuizenAPI.Data.Mappers
             builder.Property(l => l.Gemeente).IsRequired().HasMaxLength(50);
             builder.Property(l => l.Straatnaam).IsRequired().HasMaxLength(50);
             builder.Property(l => l.Huisnummer).IsRequired().HasMaxLength(10);
-            builder.Property(l => l.Postcode).IsRequired();            
+            builder.Property(l => l.Postcode).IsRequired();
+            builder.Property(l => l.Latitude);
+            builder.Property(l => l.Longitude);
         }
     }
 }

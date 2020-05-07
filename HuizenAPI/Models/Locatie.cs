@@ -1,4 +1,5 @@
 ﻿using System;
+using GoogleMaps.LocationServices;
 
 namespace HuizenAPI.Models
 {
@@ -9,7 +10,9 @@ namespace HuizenAPI.Models
         private string _gemeente;
         private string _straatnaam;
         private string _huisnummer;
-        private int _postcode;        
+        private int _postcode;
+        private double _latitude;
+        private double _longitude;
         #endregion
 
         #region Properties
@@ -74,6 +77,22 @@ namespace HuizenAPI.Models
                 _postcode = value;
             }
         }
+        public double Latitude
+        {
+            get => _latitude; 
+            set
+            {
+                _latitude = value;
+            }
+        }
+
+        public double Longitude {
+            get => _longitude;
+            set
+            {
+                _longitude = value;
+            }
+        }
         #endregion
 
         #region constructors
@@ -84,6 +103,25 @@ namespace HuizenAPI.Models
             Straatnaam = straatnaam;
             Huisnummer = huisnummer;
             Postcode = postcode;
+            ConvertAddress(gemeente, straatnaam, huisnummer);
+        }
+        #endregion
+
+        #region Methods
+        public void ConvertAddress(string gemeente, string straatnaam, string huisnummer)
+        {
+            var address = string.Concat(gemeente, ", ", straatnaam, ", ", huisnummer);
+
+            string apiKey = "AIzaSyDHBSjAv1T_S0_g_VjpsFXMWSuk3UDYHeE";
+
+            var locationService = new GoogleLocationService(apiKey);
+            var point = locationService.GetLatLongFromAddress(address);
+
+            _latitude = point.Latitude;
+            _longitude = point.Longitude;
+
+            Console.WriteLine("lat: " + _latitude);
+            Console.WriteLine("lon: " + _longitude);
         }
         #endregion
     }
