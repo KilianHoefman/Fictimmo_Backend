@@ -22,7 +22,6 @@ namespace HuizenAPI.Controllers
         /// <summary>
         /// Geef immobureaus
         /// </summary>
-        /// <param name="naam">Naam van immobureau</param>
         /// <returns>Array van immobureaus</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]

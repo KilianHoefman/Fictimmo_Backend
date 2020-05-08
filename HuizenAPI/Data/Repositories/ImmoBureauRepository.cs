@@ -50,6 +50,6 @@ namespace HuizenAPI.Data.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
-        }
+        }        
     }
 }

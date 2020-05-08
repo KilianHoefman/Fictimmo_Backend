@@ -6,21 +6,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HuizenAPI.Controllers
 {
     [AllowAnonymous]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
     public class HuizenController : ControllerBase
     {
         private readonly IHuisRepository _huisRepository;
+        private readonly IImmoBureauRepository _bureauRepository;
 
-        public HuizenController(IHuisRepository context)
+        public HuizenController(IHuisRepository context, IImmoBureauRepository contextImmo)
         {
             _huisRepository = context;
+            _bureauRepository = contextImmo;
         }
 
         /// <summary>
@@ -225,7 +228,13 @@ namespace HuizenAPI.Controllers
         {
             Locatie locatie = new Locatie(huisDTO.Locatie.Gemeente, huisDTO.Locatie.Straatnaam, huisDTO.Locatie.Huisnummer, huisDTO.Locatie.Postcode);
             Detail detail = new Detail(huisDTO.Detail.LangeBeschrijving, huisDTO.Detail.BewoonbareOppervlakte, huisDTO.Detail.TotaleOppervlakte, huisDTO.Detail.EPCWaarde, huisDTO.Detail.KadastraalInkomen);
-            ImmoBureau immoBureau = new ImmoBureau(huisDTO.ImmoBureau.Naam);
+
+            ImmoBureau immoBureau = _bureauRepository.GetAll().Where(b => b.Naam.Equals(huisDTO.ImmoBureau.Naam)).FirstOrDefault();
+            if(immoBureau == null)
+            {
+                immoBureau = new ImmoBureau(huisDTO.ImmoBureau.Naam);
+            }
+            
             Huis huis = new Huis(locatie, huisDTO.KorteBeschrijving, huisDTO.Price, detail, huisDTO.Type, huisDTO.Soort, immoBureau);
             _huisRepository.Add(huis);
             _huisRepository.SaveChanges();
