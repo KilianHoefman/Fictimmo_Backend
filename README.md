@@ -8,6 +8,17 @@ Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich
 
 ## Requirements backend Web IV
 
+### Printscreen API zoals weergegeven in swagger
+
+
+### Klassendiagram van de domeinlaag
+
+### Instellingen nodig om het project lokaal te runnen:
+
+#### Windows:
+- Een versie van Visual Studio 2017
+- Een versie van Visual Studio Code 
+
 #### De readme --> TO DO
 - [ ] Printscreen van de API zoals weergegeven in swagger. Per endpoint een printscreen van de parameters en de responses
 - [ ] Printscreen van het klassendiagram van de domeinlaag (toont de klassen met properties en methodes (inclusief de datatypes) en de associaties)
@@ -27,7 +38,7 @@ Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich
 - [x] Databank wordt geseed met data (In DataContext zoals in Recipe REST API voorbeeld, of via initializer)
 
 **De applicatie kan gebruikt worden met volgende gegevens:**
-- Gebruikersnaam: JanJanssens@huizen.be
+- Gebruikersnaam: admin@huizen.be
 - Paswoord: P@ssword1
 
 #### Controller
