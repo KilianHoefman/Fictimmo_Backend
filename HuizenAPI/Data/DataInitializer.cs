@@ -21,6 +21,7 @@ namespace HuizenAPI.Data
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
+                #region Locaties
                 Locatie Gent1 = new Locatie("Gent", "Vlaanderenstraat", "1A", 9000);
                 Locatie Gent2 = new Locatie("Gent", "Overpoortstraat", "6", 9000);
                 Locatie Merelbeke = new Locatie("Merelbeke", "Sint-elooistraat", "72", 9820);
@@ -30,8 +31,9 @@ namespace HuizenAPI.Data
                 Locatie Wondelgem = new Locatie("Wondelgem", "Vierweegsestraat", "6", 9032);
                 Locatie[] locaties = new Locatie[] { Gent1, Gent2, Merelbeke, Lokeren, Nieuwpoort, Waasmunster, Wondelgem };
                 _dbContext.Locatie.AddRange(locaties);
-                Console.WriteLine("Locaties toegevoegd");
+                #endregion
 
+                #region Details
                 Detail Detail1 = new Detail("Dit is een lange beschrijving", 200, 250, 200, 1400);
                 Detail Detail2 = new Detail("Dit is een lange beschrijving v2", 400, 800, 733, 3466);
                 Detail Detail3 = new Detail("Dit is een lange beschrijving v3", 600, 1200, 560, 4500);
@@ -42,14 +44,17 @@ namespace HuizenAPI.Data
                 Detail Detail8 = new Detail("Uniek gelegen bouwgrond", 540, 1800, 0, 0);
                 Detail[] details = new Detail[] { Detail1, Detail2, Detail3, Detail4, Detail5, Detail6, Detail7, Detail8 };
                 _dbContext.Detail.AddRange(details);
-                Console.WriteLine("Details toegevoegd");
+                #endregion
 
+                #region ImmoBureaus
                 ImmoBureau Nobels = new ImmoBureau("Immo Nobels");
                 ImmoBureau DaVinci = new ImmoBureau("Immo Da Vinci");
                 ImmoBureau CD = new ImmoBureau("CD-Vastgoed");
                 ImmoBureau[] immoBureaus = new ImmoBureau[] { Nobels, DaVinci, CD };
                 _dbContext.AddRange(immoBureaus);
+                #endregion
 
+                #region Huizen
                 Huis Huis1 = new Huis(Gent1, "Dit is een korte beschrijving", 500000, Detail1, "koop", "huis", Nobels);
                 Huis Huis2 = new Huis(Gent2, "Dit is een korte beschrijving v2", 452000, Detail2, "koop", "appartement", CD);
                 Huis Huis3 = new Huis(Merelbeke, "Dit is een korte beschrijving v3", 4500, Detail3, "huur", "huis", DaVinci);
@@ -60,17 +65,15 @@ namespace HuizenAPI.Data
                 Huis Huis8 = new Huis(Merelbeke, "Bouwgrond", 345000, Detail8, "koop", "grond", CD);
                 Huis[] huizen = new Huis[] { Huis1, Huis2, Huis3, Huis4, Huis5, Huis6, Huis7, Huis8 };
                 _dbContext.Huis.AddRange(huizen);
-                Console.WriteLine("Huizen toegevoegd");
+                #endregion
 
-                Console.WriteLine("ImmoBureaus toegevoegd");
-
+                #region Klanten
                 Klant klant1 = new Klant("Jan", "Janssens", "admin@huizen.be");
-
+                
                 _dbContext.Klant.AddRange(klant1);
 
-                Console.WriteLine("klant toegevoegd");
-
                 await CreateUser(klant1.Email, "P@ssword1");
+                #endregion
             }
             _dbContext.SaveChanges();
         }
