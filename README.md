@@ -10,20 +10,27 @@ Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich
 
 ### Printscreen API zoals weergegeven in swagger
 
+![Swagger printout 1](images/Swagger1.png)
 
+![Swagger printout 2](images/Swagger2.png)
+
+![Swagger printout 3](images/Swagger3.png)
 ### Klassendiagram van de domeinlaag
+
+![DCD printout domeinlaag](images/DCD.png)
 
 ### Instellingen nodig om het project lokaal te runnen:
 
 #### Windows:
 - Een versie van Visual Studio 2017
-- Een versie van Visual Studio Code 
+- De **"ConnectionStrings" veranderen in de 'appsettings.json' naar -->**
+_"DefaultConnection": "Server=127.0.0.1,1433; User Id=sa;Password=P@ssw0rd1;Database=Web4Project"_
 
 #### De readme --> TO DO
-- [ ] Printscreen van de API zoals weergegeven in swagger. Per endpoint een printscreen van de parameters en de responses
-- [ ] Printscreen van het klassendiagram van de domeinlaag (toont de klassen met properties en methodes (inclusief de datatypes) en de associaties)
-- [ ] Opsomming van de instellingen die nodig zijn om je backend project lokaal te runnen, indien nodig
-- [ ] Voorbereiding feedback moment :
+- [x] Printscreen van de API zoals weergegeven in swagger. Per endpoint een printscreen van de parameters en de responses
+- [x] Printscreen van het klassendiagram van de domeinlaag (toont de klassen met properties en methodes (inclusief de datatypes) en de associaties)
+- [x] Opsomming van de instellingen die nodig zijn om je backend project lokaal te runnen, indien nodigx
+- [x] Voorbereiding feedback moment :
  -  dit document waarin je aanvinkt wat je reeds hebt gerealiseerd
  - Opsomming van de vragen die je hebt over je backend project en waarover je feedback wenst
 
