@@ -26,7 +26,7 @@ Alles is toegankelijk vanuit de frontend mits de gebruikers ingelogd is (of zich
 - De **"ConnectionStrings" veranderen in de 'appsettings.json' naar -->**
 _"DefaultConnection": "Server=127.0.0.1,1433; User Id=sa;Password=P@ssw0rd1;Database=Web4Project"_
 
-#### De readme --> TO DO
+#### De readme
 - [x] Printscreen van de API zoals weergegeven in swagger. Per endpoint een printscreen van de parameters en de responses
 - [x] Printscreen van het klassendiagram van de domeinlaag (toont de klassen met properties en methodes (inclusief de datatypes) en de associaties)
 - [x] Opsomming van de instellingen die nodig zijn om je backend project lokaal te runnen, indien nodigx
