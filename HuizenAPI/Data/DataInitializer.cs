@@ -1,6 +1,7 @@
 ﻿using HuizenAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HuizenAPI.Data
@@ -67,21 +68,29 @@ namespace HuizenAPI.Data
                 _dbContext.Huis.AddRange(huizen);
                 #endregion
 
-                #region Klanten
-                Klant klant1 = new Klant("Jan", "Janssens", "admin@huizen.be");
-                
-                _dbContext.Klant.AddRange(klant1);
+                #region Users
+                await InitUser();
 
-                await CreateUser(klant1.Email, "P@ssword1");
+                Klant klant1 = new Klant("Jan", "Janssens", "jan@hotmail.com");
+                Klant klant2 = new Klant("Mark", "Markssens", "Markie@hotmail.com");                                
+                _dbContext.Klant.AddRange(klant1, klant2);
+
                 #endregion
             }
             _dbContext.SaveChanges();
         }
 
-        private async Task CreateUser(string email, string password)
+        private async Task InitUser()
         {
-            var gebruiker = new IdentityUser { UserName = email, Email = email };
-            await _userManager.CreateAsync(gebruiker, password);
+            string eMailAddress = "admin@huizen.be";
+            IdentityUser user = new IdentityUser { UserName = eMailAddress, Email = eMailAddress };
+            await _userManager.CreateAsync(user, "P@ssword1");
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "admin"));
+
+            eMailAddress = "klant@hotmail.com";
+            user = new IdentityUser { UserName = eMailAddress, Email = eMailAddress };
+            await _userManager.CreateAsync(user, "P@ssword1");
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "klant"));
         }
     }
 }

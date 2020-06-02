@@ -78,7 +78,10 @@ namespace HuizenAPI
             services.AddScoped<IImmoBureauRepository, ImmoBureauRepository>();
             services.AddScoped<IKlantRepository, KlantRepository>();
             services.AddScoped<ILocatieRepository, LocatieRepository>();
+
+            services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
         }
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataInitializer dataInitializer)
