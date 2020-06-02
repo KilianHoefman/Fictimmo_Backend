@@ -10,8 +10,7 @@ using System.Linq;
 
 namespace HuizenAPI.Controllers
 {
-    [AllowAnonymous]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[AllowAnonymous]
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
@@ -33,6 +32,7 @@ namespace HuizenAPI.Controllers
         /// <param name="type">Type van het huis (koop of huur) als string</param>
         /// <returns>Array van huizen</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,6 +50,7 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het huis als int</param>
         /// <returns>Het huis</returns>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -68,6 +69,7 @@ namespace HuizenAPI.Controllers
         /// <param name="id">Id van het huis waarvan de details gevraagd worden</param>
         /// <returns>Details van een specifiek huis</returns>
         [HttpGet("GetDetailVoorHuis")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -121,6 +123,7 @@ namespace HuizenAPI.Controllers
         /// <param name="Naam">Naam als string</param>
         /// <returns>Array van huizen met gespecifieerd immobureau</returns>
         [HttpGet("ImmoBureau")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -269,6 +272,8 @@ namespace HuizenAPI.Controllers
         /// </summary>
         /// <param name="id">Id van het te verwijderen huis</param>        
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
