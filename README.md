@@ -1,5 +1,5 @@
-# 1920-b1-be-KilianHoefman
-### GitHub repository voor backend API van een (fictieve) ImmoWebsite
+# Fictimmo Backend
+### GitHub repository voor backend API van een (fictieve) ImmoWebsite geschreven in C# (ASP .NET CORE)
 Deze applicatie runt op Visual Studio 2017 op Windows, alsook op Visual Studio for Mac (met de nodige aanvulling van de user secret token).
 
 De bedoeling van deze backend applicatie is het opslaan van gegevens van Huizen, de daarbijhorende details en locatie.
